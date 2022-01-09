@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Srinath Sridhar</title>
+    <description>Srinath Sridhar: Blog</description>
+    <link>http://mpi-inf.mpg.de/~ssridhar/bloghttp://mpi-inf.mpg.de/~ssridhar/</link>
+    <atom:link href="http://mpi-inf.mpg.de/~ssridhar/bloghttp://mpi-inf.mpg.de/~ssridhar/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 28 Sep 2014 19:28:30 +0200</pubDate>
+    <lastBuildDate>Sun, 28 Sep 2014 19:28:30 +0200</lastBuildDate>
+    <generator>Jekyll v2.1.1</generator>
+    
+      <item>
+        <title>Testing Blog</title>
+        <description>&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 28 Sep 2014 20:30:00 +0200</pubDate>
+        <link>http://mpi-inf.mpg.de/~ssridhar/bloghttp://mpi-inf.mpg.de/~ssridhar/2014/testing.html</link>
+        <guid isPermaLink="true">http://mpi-inf.mpg.de/~ssridhar/bloghttp://mpi-inf.mpg.de/~ssridhar/2014/testing.html</guid>
+        
+        
+        <category>faculty</category>
+        
+        <category>jobs</category>
+        
+      </item>
+    
+  </channel>
+</rss>

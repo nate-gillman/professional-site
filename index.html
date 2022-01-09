@@ -1,7 +1,160 @@
-<!DOCTYPE html>
-<html>
+<Service!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Fonts and stuff -->
+<!--    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800' rel='stylesheet' type='text/css' />-->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400italic,700italic,800italic,400,700,800' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="css/homepage.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/iconize.css"/>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+          $(function()
+          {
+                $('#header').load('header.html');
+                $('#footer').load('footer.html');
+                $('#title').load('title.html');
+          });
+
+    </script>
+    <div id="header"></div>
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>TESTING: I'm hosted with GitHub Pages.</p>
+<div id="content">
+    <div id="content-inner">
+
+        <div id="title"></div>
+
+        <ul id="tabs">
+            <li><a href="index.html" class="selected">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="ivl.html">Group</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+        </ul>
+
+        <div class="tabContent" id="index.html">
+            <div class="section">
+                <img src="images/www.jpg" width="256" align="left" alt="Srinath Sridhar"
+                     style="margin-left:0px;margin-right:20px; border:1px solid #8a887d"/>
+                I am an assistant professor in the <a href="https://cs.brown.edu/" target="_blank">Department of Computer Science</a> at <a href="https://brown.edu/" target="_blank">Brown University</a>. My research is in <b>3D computer vision and machine learning</b>. Specifically, I am interested in 3D spatiotemporal visual understanding of human physical interactions. I build methods for <a href="http://gvv.mpi-inf.mpg.de/projects/VNect/" target="_blank">human-centric</a>, <a href="https://hughw19.github.io/NOCS_CVPR2019/" target="_blank">object-centric</a>, and <a href="http://www.pirk.info/projects/learning_interactions/index.html" target="_blank">interaction-centric</a> understanding of our world from videos and images.<br/>
+
+<!--                My research has broad applications, for instance in building <a href="https://youtu.be/WgpPalA2RzA?t=273" target="_blank">smarter robots</a>, and more immersive <a href="https://youtu.be/nCbv65Fjoks?t=174" target="_blank">virtual/augmented realities</a>.-->
+
+                <div class="highlight">
+                    <b>Prospective Students</b>: We are always looking for motivated students to join us. Please see <a href="https://cs.brown.edu/degrees/doctoral/" target="_blank">this page</a> for information on PhD admissions. If you are already an undergrad/grad at Brown, please email me directly.
+                </div><br/><br/><br/><br/><br/>
+
+		Outside of Brown, I spend part of time as a Visiting Academic at <a href="https://www.amazon.jobs/en/teams/rai" target="_blank">Amazon Robotics AI</a>. I was previously a postdoc at <a href="http://cs.stanford.edu/" target="_blank">Stanford University</a> with <a href="https://geometry.stanford.edu/member/guibas/index.html" target="_blank">Leonidas Guibas</a>.
+        I obtained my <a href="pubs/Dissertation_SrinathSridhar.pdf" target="_blank">PhD</a> at the <a href="http://www.mpi-inf.mpg.de" target="_blank">Max Planck Institute for Informatics</a> advised by <a href="http://www.mpi-inf.mpg.de/~theobalt/" target="_blank">Christian Theobalt</a> and <a href="http://users.comnet.aalto.fi/oulasvir/" target="_blank">Antti Oulasvirta</a>.
+        I have also spent time at <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-redmond/" target="_blank">Microsoft Research Redmond</a>, the <a href="http://umich.edu" target="_blank">University of Michigan, Ann Arbor</a>, the <a href="http://www.honda-ri.com/HRI_Us/" target="_blank">Honda Research Institute</a>, and <a href="https://ceg.annauniv.edu/" target="_blank">College of Engineering Guindy</a>.<br/><br/>
+
+                <center>
+                    <a href="misc/srinath_sridhar_cv_pub.pdf" target="_blank">CV</a>
+                    &nbsp;/&nbsp; <a href="http://scholar.google.com/citations?user=qIvZT74AAAAJ&hl=en" target="_blank">Google
+                    Scholar</a>
+                    <!-- &nbsp;/&nbsp; <a href="https://www.semanticscholar.org/author/Srinath-Sridhar/143627559" -->
+                                     <!-- target="_blank">Semantic Scholar</a> -->
+                    &nbsp;/&nbsp; <a href="https://github.com/drsrinathsridhar" target="_blank">Github</a>
+                    &nbsp;/&nbsp; <a href="https://twitter.com/drsrinathsridha" target="_blank">Twitter</a><br/>
+                     <h3><a href="mailto:srinath@brown.edu">srinath@brown.edu</a></h3>
+                </center>
+            </div>
+
+            <div class="section">
+                <hr class="smooth">
+                <h3>Updates</h3>
+                <p>
+                <ul>
+                <li><img src="images/new.gif"> [ Nov-2021 ]: Our new <a href="https://neuralfields.cs.brown.edu/" target="_blank">report and companion website</a> provides a consolidated overview of coordinate-based neural networks (<b>neural fields</b>) in visual computing and beyond by reviewing over 250 papers.</li>
+			<li>[ Oct-2021 ]: I helped co-organize the <a href="https://ivl.cs.brown.edu/3DReps/" target="_blank">Second 3DReps workshop</a> at ICCV. The workshop recording is now available at <a href="https://youtu.be/4VKTE1Svl30" target="_blank">this link</a>.</li>
+			<li>[ Oct-2021 ]: <a href="https://geometry.stanford.edu/projects/humor/" target="_blank">HuMoR</a>, a human motion model for robust pose estimation will be presented at ICCV 2021.
+                    </li>			
+		<li>[ Apr-2021 ]: Srinath received a <a href="https://research.google/outreach/research-scholar-program/recipients/" target="_blank">Google Research Scholar</a> award to further the group's research on object-centric perception/synthesis for mixed reality.
+                    </li>
+                <span id="moreNews">
+		<li>[ Mar-2021 ]: Our upcoming <a href="https://aadilmehdis.github.io/DRACO-Project-Page/" target="_blank">ICRA paper</a> shows how to learn to densely reconstruct and canonicalize shapes with only weak supervision. Please see the <a href="https://aadilmehdis.github.io/DRACO-Project-Page/" target="_blank">project page</a> for details, code, and data.
+                    </li>
+                <li>[ Nov-2020 ]: Our upcoming <a href="https://neurips.cc/Conferences/2020/Schedule?type=Spotlight" target="_blank">NeurIPS spotlight</a> paper shows how to learn 3D canonical spatiotemporal representations of dynamically moving point clouds. Please see the <a href="https://geometry.stanford.edu/projects/caspr/" target="_blank">project page</a> for details.
+                    </li>
+        			<li>[ Aug-2020 ]: We organized the 3DReps Workshop at ECCV 2020. You can watch the recorded sessions on YouTube (Link: <a href="https://youtu.be/XaaiwCqEWI4" target="_blank">Session 1</a>, <a href="https://youtu.be/BskUrVASLB4" target="_blank">Session 2</a>).
+                    </li>
+			
+					<li>[ Aug-2020 ]: Upcoming paper at ECCV on <a href="https://geometry.stanford.edu/projects/pix2surf/" target="_blank">sparse multiview 3D surface recontruction</a> aka <b>Pix2Surf</b>.
+                    </li>
+                    
+					<li>[ Jan-2020 ]: I am serving on the program committee (Area Chair) for <a href="http://ieeevr.org/2020/" target="_blank">IEEE VR 2020</a>.
+                    </li>
+					<li>[ Jan-2020 ]: Paper on <a href="https://geometry.stanford.edu/projects/learningdynamicsWACV2020/" target="_blank">predicting object dynamics</a> of previously unseen objects accepted to WACV.
+                    </li>
+                    <li>[ Dec-2019 ]: <a href="https://davrempe.github.io/" target="_blank">Davis Rempe</a> is presenting our paper on <a href="https://geometry.stanford.edu/projects/xnocs/" target="_blank">multi-view aggregation for 3D reconstruction</a> at NeurIPS. <a href="https://github.com/drsrinathsridhar/xnocs" target="_blank">Code and datasets are available</a>.
+                    </li>
+                    <li>[ Jun-2019 ]: <a
+                            href="https://www.youtube.com/watch?v=Vz2yDmrVURQ"
+                            target="_blank">Watch the interview</a> we did for our CVPR 2019 paper:
+                    </li><br />
+					<iframe width="280" height="158" src="https://www.youtube.com/embed/Vz2yDmrVURQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <li>[ May-2019 ]: Our <a
+                            href="https://storage.googleapis.com/pirk.io/projects/learning_interactions/index.html"
+                            target="_blank">paper</a> on learning to generate human-object interactions was awarded an
+                        <a href="misc/photos/EG2019_HonMention_crop.jpg" target="_blank"><b>honorable mention</b></a> at
+                        Eurographics 2019. Read my blog post on this work on the <a
+                                href="http://ai.stanford.edu/blog/generate-human-object/" target="_blank">SAIL Blog</a>.
+                    </li>
+                    <li>[ Mar-2019 ]: Can we estimate the 6D pose and size of novel object
+                        instances never encountered before? Our upcoming <a href="https://arxiv.org/abs/1901.02970"
+                                                                            target="_blank">CVPR oral paper</a> shows
+                        one way (<a href="https://youtu.be/UsfoLcInlhM" target="_blank">video</a>).
+                    </li>
+                    <li>[ Mar-2019 ]: <a href="https://twitter.com/drsrinathsridha/status/1113314946136268800"
+                                         target="_blank">Read my Twitter thread</a> about interesting hand facts that
+                        you may not have known before.
+                    </li>
+                    </span>
+                    <div onclick="toggleNews()" id="moreNewsBtn" class="showBtn"><a class="empty">+ More...</a></div>
+                    <div onclick="toggleNews()" id="lessNewsBtn" class="showBtn"><a class="empty">- Less...</a></div>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+</div>
+</div>
+
+<script>
+            function toggleNews() {
+              var moreNews = document.getElementById("moreNews");
+              var moreNewsBtn = document.getElementById("moreNewsBtn");
+              var lessNewsBtn = document.getElementById("lessNewsBtn");
+              if (moreNewsBtn.style.display === "none") {
+                moreNews.style.display = "none";
+                moreNewsBtn.style.display = "inline";
+                lessNewsBtn.style.display = "none";
+              } else {
+                moreNews.style.display = "inline";
+                moreNewsBtn.style.display = "none";
+                lessNewsBtn.style.display = "inline";
+              }
+            }
+            function togglePubs() {
+              var morePubs = document.getElementById("morePubs");
+              var morePubsBtn = document.getElementById("morePubsBtn");
+              var lessPubsBtn = document.getElementById("lessPubsBtn");
+              if (morePubsBtn.style.display === "none") {
+                morePubs.style.display = "none";
+                morePubsBtn.style.display = "inline";
+                lessPubsBtn.style.display = "none";
+              } else {
+                morePubs.style.display = "inline";
+                morePubsBtn.style.display = "none";
+                lessPubsBtn.style.display = "inline";
+              }
+            }
+</script>
+
 </body>
 </html>
