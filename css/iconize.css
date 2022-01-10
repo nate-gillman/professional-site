@@ -31,6 +31,17 @@ a[href *="github.com"] {
 	background: transparent url(../icns/icon_github.gif) no-repeat center left;
 }
 
+a[href *="arxiv.org"] {
+	padding: 5px 0px 5px 35px;
+	background: transparent url(../icns/icon_arxiv.gif) no-repeat center left;
+}
+
+a[href *="ams.org"] {
+	padding: 5px 0px 5px 20px;
+	background: transparent url(../icns/icon_ams.gif) no-repeat center left;
+}
+
+
 a[href *="youtube.com"], a[href *="youtu.be"] {
 	padding: 5px 0px 5px 20px;
 	background: transparent url(../icns/icon_yt.gif) no-repeat center left;
