@@ -36,10 +36,12 @@ a[href *="arxiv.org"] {
 	background: transparent url(../icns/icon_arxiv.gif) no-repeat center left;
 }
 
+/* this doesn't show up correctly... sad.
 a[href *="ams.org"] {
 	padding: 5px 0px 5px 20px;
 	background: transparent url(../icns/icon_ams.gif) no-repeat center left;
 }
+*/
 
 
 a[href *="youtube.com"], a[href *="youtu.be"] {
