@@ -6,5 +6,6 @@ Attribution (and thanks) are due to Srinath Sridhar, who kindly let me cannibali
 
 Notes to self: 
 
-1. To get the file permissions correct on Brown's file system, execute ```chmod -R ugo+rX .```
-2. To get nategillman.com to go to this, use the DNS settings under the /images folder, and put nategillman.com inside a CNAME document in the repo
+1. Currently, this repo is hosted at [https://cs.brown.edu/people/ngillman/](https://cs.brown.edu/people/ngillman/).
+2. In order to switch it back so that the repo is hosted on github through nategillman.com, I need to use the DNS settings that I screenshotted and put under the /images folder, and also put nategillman.com inside a CNAME document in the repo.
+3. To get the file permissions correct on Brown's file system, execute ```chmod -R ugo+rX .```
