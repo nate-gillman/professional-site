@@ -1,4 +1,4 @@
-# nate-gillman.github.io
+# professional-site
 
 This is the repo for my academic website. 
 
