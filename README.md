@@ -6,6 +6,8 @@ Attribution (and thanks) are due to Srinath Sridhar, who kindly let me cannibali
 
 Notes to self: 
 
-1. Currently, this repo is hosted at [https://cs.brown.edu/people/ngillman/](https://cs.brown.edu/people/ngillman/). These files are stored under Brown's file system, which I can access via ```ssh ngillman@ssh.cs.brown.edu``` and ```cd /web/cs/web/people/ngillman```. Once in this folder, I should execute ```rm -rf *``` to delete all contents, then ```git clone https://github.com/nate-gillman/professional-site.git .``` to copy the new files from the repo. To get the file permissions correct on Brown's file system, execute ```chmod -R ugo+rX .```
-2. In order to switch it back so that the repo is hosted on github through nategillman.com, I need to use the DNS settings that I screenshotted and put under the /images folder, and also put nategillman.com inside a CNAME document in the repo.
-3. If for some reason Brown CS's file system won't let me ssh in, I problably need to redo the ssh keypair authentication setup [http://cs.brown.edu/about/system/connecting/ssh/osx/](http://cs.brown.edu/about/system/connecting/ssh/osx/)
+1. Currently, this repo is hosted at [https://cs.brown.edu/people/ngillman/](https://cs.brown.edu/people/ngillman/). These files are stored under Brown's file system, which I can access via ```ssh ngillman@ssh.cs.brown.edu``` and ```cd /web/cs/web/people/ngillman```. 
+2. Once in this folder, I should execute ```rm -rf *``` to delete all contents, then ```git clone https://github.com/nate-gillman/professional-site.git .``` to copy the new files from the repo. 
+3. To get the file permissions correct on Brown's file system, execute ```chmod -R ugo+rX .```
+4. In order to switch it back so that the repo is hosted on github through nategillman.com, I need to use the DNS settings that I screenshotted and put under the /images folder, and also put nategillman.com inside a CNAME document in the repo.
+5. If for some reason Brown CS's file system won't let me ssh in, I problably need to redo the ssh keypair authentication setup [http://cs.brown.edu/about/system/connecting/ssh/osx/](http://cs.brown.edu/about/system/connecting/ssh/osx/)
