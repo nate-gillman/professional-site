@@ -1,6 +1,6 @@
 # professional-site
 
-This is the repo for my academic website. 
+This used to be the repo for my academic/professional website... now it is the branch that I use when I need to re-route to my stable url.
 
 Notes to self: 
 
