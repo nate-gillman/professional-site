@@ -1,1 +1,0 @@
-- In iconize.css, figure out how to make the mathscinet icon not look ridiculous
