@@ -2,7 +2,8 @@
 
 This is the repo for my professional website. 
 
-Notes to self: 
+Notes to self: Currently this repo is hosted on Github via Google sites... the notes below were accurate when this was hosted as a static HTML page on Brown's site.
+
 
 1. Currently, this repo is hosted at [https://cs.brown.edu/people/ngillman/](https://cs.brown.edu/people/ngillman/). These files are stored under Brown's file system, which I can access via ```ssh ngillman@ssh.cs.brown.edu``` and ```cd /web/cs/web/people/ngillman```. 
 2. Once in this folder, I should execute ```rm -rf *``` to delete all contents (this will leave behind some annoying files... must remove those as well!!), then ```git clone https://github.com/nate-gillman/professional-site.git .``` to copy the new files from the repo. 
