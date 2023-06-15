@@ -2,7 +2,9 @@
 
 This is the repo for my professional website. 
 
-Notes to self: Currently this repo is hosted on Github via Google sites... the notes below were accurate when this was hosted as a static HTML page on Brown's site.
+<!-- Notes to self: Currently this repo is hosted on Github via Google sites... the notes below were accurate when this was hosted as a static HTML page on Brown's site. -->
+
+<!-- Notes to self: Currently this repo is hosted on as a static HTML page on Brown's site. -->
 
 
 1. Currently, this repo is hosted at [https://cs.brown.edu/people/ngillman/](https://cs.brown.edu/people/ngillman/). These files are stored under Brown's file system, which I can access via ```ssh ngillman@ssh.cs.brown.edu``` and ```cd /web/cs/web/people/ngillman```. 
