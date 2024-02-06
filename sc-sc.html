@@ -197,6 +197,9 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Effect of Correction Strength</h2>
+      </div>
       <h2 class="subtitle has-text-centered">
         Our empirical results demonstrate that increasing our proposed correction strength hyperparameter
       improves performance and stability after self-consuming iterations.
@@ -204,39 +207,19 @@
       <h2 class="subtitle has-text-centered">
         <img src="scsc-static/images/gaussian_toy_summary.png" alt="MY ALT TEXT"/>
       </h2>
-      <br><br>
-
     </div>
   </div>
 </section>
 
-
-<!-- End images -->
-
-
-<!-- Youtube video -->
-<!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- End youtube video -->
 
 
 <section class="hero teaser is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Examples: Synthesized Human Motion</h2>
+      </div>
       <h2 class="subtitle has-text-centered">
         How does our proposed self-correction operation affect the self-consuming loop for the human motion generation task?
         We can see that the 
@@ -253,8 +236,7 @@
         <source src="scsc-static/videos/motion_glitch_cropped.mp4"
         type="video/mp4">
       </video>
-      <br><br>
-
+      <br>
     </div>
   </div>
 </section>
@@ -263,6 +245,9 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Examples: Synthesized Human Motion</h2>
+      </div>
       <h2 class="subtitle has-text-centered">
         We can see that the 
         <b><FONT COLOR="#00A300">self-consuming</FONT></b> model outputs random motions that slide the figure to the right
@@ -287,6 +272,11 @@
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
+      <br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Quantitative Analysis</h2>
+      </div>
+      <br>
       <h2 class="subtitle has-text-centered">
         Our quantitative analysis demonstrates that the 
         <b><FONT COLOR="#0476D0">self-consuming with self-correction</FONT></b> model outperforms the 
@@ -306,6 +296,7 @@
        <div class="item">
         <img src="scsc-static/images/40k_25_iterative_finetuning.png" alt="MY ALT TEXT"/>
       </div>
+      <br>
     </div>
   </div>
 </section>
@@ -316,12 +307,14 @@
 
 
 
-
-<!-- Video carousel -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Example: Synthesized Human Motion, Highlighting a Failure Case</h2>
+      </div>
+      <br>
       <h2 class="subtitle has-text-centered">
         We highlight a failure case of the <b><FONT COLOR="#0476D0">self-consuming loop with self-correction</FONT></b>. 
         When the dataset size is small (n=64) the self-consuming loop tends to suffer from a lack of diverity.
@@ -333,7 +326,20 @@
         <source src="scsc-static/videos/motion_diversity_failure_cropped.mp4"
         type="video/mp4">
       </video>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
       <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Example: Synthesized Human Motion, Fixing the Failure Case</h2>
+      </div>
+      <br>
       <h2 class="subtitle has-text-centered">
         However, we find that this issue is resolved when using a larger dataset (n=2794).
         With the same prompt, the <b><FONT COLOR="#0476D0">self-consuming with self-correction</FONT></b> model 
@@ -348,7 +354,6 @@
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
 
 
