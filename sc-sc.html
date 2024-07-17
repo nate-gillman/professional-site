@@ -80,7 +80,11 @@
             </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Brown University, Google Research<br>ICML 2024</span>
+                    <span class="author-block">
+                      Brown University, Google DeepMind
+                      <br>
+                      <a href="https://icml.cc/virtual/2024/poster/33370" target="_blank">ICML 2024</a>
+                    </span>
                   </div>
 
                   <div class="column has-text-centered">
@@ -127,6 +131,28 @@
                           <i class="fab fa-github"></i>
                         </span>
                         <span>Code</span>
+                        </a>
+                      </span>
+
+                      <!-- Powerpoint file link -->
+                      <span class="link-block">
+                        <a href="scsc-static/slides/scsc_icml2024_slides.pptx" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-powerpoint"></i>
+                        </span>
+                        <span>Slides</span>
+                        </a>
+                      </span>
+
+                      <!-- Youtube link -->
+                      <span class="link-block">
+                        <a href="https://www.youtube.com/watch?v=ssS7nfdtOo8" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fab fa-youtube"></i>
+                        </span>
+                        <span>YouTube</span>
                         </a>
                       </span>
 
@@ -282,11 +308,35 @@
   </div>
 </section>
 
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Example: Human Motion Physics Correction</h2>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Generated motions sometimes
+        <b><FONT COLOR="#00A300">disobey the laws of physics</FONT></b>.
+        For our self-correction operation, we utilize a frozen, pretrained policy whose goal is to imitate the given synthetic motion sequence.
+        Because the transition dynamics are provided by a physics simulator, this has the effect of imitating the synthetic motion as closely as possible, 
+        while correcting those parts of the motion which disobey the laws of physics.
+        In this example, the resulting output motion is a corrected version of the input motion, but with <b><FONT COLOR="#0476D0">physics-obeying collision logic</FONT></b>.
+      </h2>
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="scsc-static/videos/uhc_correction.mp4"
+        type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
 
 
 
 <!-- Images -->
-<section class="hero is-small is-light">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <br>
@@ -324,7 +374,7 @@
 
 
 
-<section class="hero teaser">
+<section class="hero teaser is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
@@ -349,7 +399,7 @@
 
 
 
-<section class="hero teaser is-light">
+<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
