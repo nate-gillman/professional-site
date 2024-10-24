@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Using Fourier series, we build a neural network layer which learns categorical distributions that have a continuous structure.">
+  <meta property="og:title" content="Fourier Head: Helping Large Language Models Learn Complex Probability Distributions"/>
+  <meta property="og:description" content="Using Fourier series, we build a neural network layer which learns categorical distributions that have a continuous structure."/>
+  <meta property="og:url" content="https://nategillman.com/sc-sc.html"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="scsc-static/image/your_banner_image.png" /> -->
+  <!-- <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="scsc-static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Machine Learning, Generative Modeling, Self-Consuming Loops, Data Contamination, Deep Learning, Artificial Intelligence, Human Motion Synthesis">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Fourier head</title>
+  <link rel="icon" type="image/x-icon" href="fourier-head-static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="fourier-head-static/css/bulma.min.css">
+  <link rel="stylesheet" href="fourier-head-static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="fourier-head-static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="fourier-head-static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="fourier-head-static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script type="module" src="fourier-head-static/js/data.js"></script>
+  <script defer src="fourier-head-static/js/fontawesome.all.min.js"></script>
+  <script src="fourier-head-static/js/bulma-carousel.min.js"></script>
+  <script src="fourier-head-static/js/bulma-slider.min.js"></script>
+  <script src="fourier-head-static/js/index.js"></script>
+  <script type="module" src="fourier-head-static/js/fourier-series-component.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Fourier Head
+              <img src="fourier-head-static/images/favicon.ico" alt="image" style="width: 48px; height: 48px; vertical-align: text-top;">
+              <br>Helping Large Language Models Learn<br>Complex Probability Distributions</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://nategillman.com/" target="_blank">Nate Gillman</a><sup>*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://dakshces.github.io/" target="_blank">Daksh Aggarwal</a><sup>*</sup>, 
+              </span>
+              <span class="author-block">
+                <a href="https://tempoxylophone.github.io/" target="_blank">Michael Freeman</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.saurabhsingh.info" target="_blank">Saurabh Singh</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://chensun.me/" target="_blank">Chen Sun</a>
+              </span>
+
+            </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                      Brown University, Google DeepMind
+                    </span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                      
+                      <!-- Arxiv PDF link -->
+                      <!-- <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                        </a>
+                      </span> -->
+
+                      <!-- Supplementary PDF link -->
+                      <!-- <span class="link-block">
+                        <a href="scsc-static/pdfs/supplementary_material.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Supplementary</span>
+                        </a>
+                      </span> -->
+
+                      <!-- ArXiv abstract Link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/abs/2402.07087" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="ai ai-arxiv"></i>
+                        </span>
+                        <span>arXiv</span>
+                      </a>
+                      </span>
+
+                      <!-- Github link -->
+                      <span class="link-block">
+                        <a href="https://github.com/nate-gillman/self-correcting-self-consuming" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                        </a>
+                      </span>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <fourier-series-component></fourier-series-component>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        We demonstrate how a Fourier head can learn to approximate a square wave.
+        As we increase the number of frequencies, we get a Fourier head with more expressive power.
+        Accordingly, we can see that as the number of frequencies increases, 
+        the Fourier head does a better job approximating the square wave (according to the KL divergence metric), 
+        and it becomes less smooth (according to the smoothness metric).
+        This trend illustrates the Fourier Head Scaling Law in the paper--more frequencies makes it less smooth and gives it more expressive power.
+        In this example, we consider a Fourier PDF with <math display="inline"><mi>N=1, ..., 64</mi></math> frequencies,
+        and <math display="inline"><mi>128</mi></math> output dimensions.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            As the quality of large language models has improved, 
+            there has been increased interest in using them to model non-linguistic tokens.
+            For example, the Decision Transformer recasts agentic decision making as a sequence modeling problem, 
+            using a decoder-only LLM to model the distribution over the discrete action space for an Atari agent.
+            However, when adapting LLMs to non-linguistic domains, it remains unclear if softmax over discrete bins 
+            captures the continuous structure of the tokens and the potentially complex distributions needed for high quality token generation.
+            We introduce a neural network layer, constructed using Fourier series, which we can easily substitute 
+            for any linear layer if we want the outputs to have a more continuous structure.
+            We perform extensive analysis on synthetic datasets, as well as on large-scale decision making and time series forecasting tasks.
+            We also provide theoretical evidence that this layer can better learn signal from data while ignoring high-frequency noise.
+            All of our results support the effectiveness of our proposed Fourier head in scenarios where the 
+            underlying data distribution has a natural continuous structure.
+            For example, the Fourier head improves a Decision Transformer agent's returns by 46% on the Atari 
+            Seaquest game, and increases a state-of-the-art times series foundation model's forecasting performance by 3.5% across 20 benchmarks unseen during training.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Teaser video-->
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <h2 class="subtitle has-text-centered">
+        Example: Fourier Head Learns Higher Quality Densities
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/toy_predicted_vs_true_gmm_2.png" alt="MY ALT TEXT"/>
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        As a low-dimensional demonstration, we task an MLP with learning to approximate a <b><FONT COLOR="#2CA02C">continuous bimodal density</FONT></b> using a categorical distribution 
+        and a cross entropy objective.
+        We observe that a standard <b><FONT COLOR="#E06768">linear classification head</FONT></b>  fails to distinguish between the two modes, 
+        and overfits to high-frequency noise in the training set.
+        In contrast, our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> learns a smoother, more accurate categorical distribution.
+        Our paper provides theoretical justification for the Fourier head, as well as empirical justification, on a large scale imitation learing task,
+        and a time series foundation model pretraining task.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br><br>
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-4">Overview of Procedure: Fourier head</h2>
+      </div>
+      <br>
+      <div class="content has-text-justified">
+        <p>
+          The Fourier head learns a continuous probability density function using Fourier series, and returns a discrete approximation of it.
+          (Maybe we could make a video on Canvas like we did for SCSC? Or we should just screenshot/copy over the )
+        </p>
+      </div>
+      <br>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- End images --> 
+
+
+
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre>
+<code>@InProceedings{TODO
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+            This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>
