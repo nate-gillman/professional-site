@@ -1,4 +1,5 @@
-import { multinomialData } from './data.js';
+// import { multinomialData } from './data-mixture-of-gaussians.js';
+import { multinomialData } from './data-square-wave.js';
 
 class FourierSeriesComponent extends HTMLElement {
     constructor() {
@@ -119,20 +120,26 @@ class FourierSeriesComponent extends HTMLElement {
         this.maxKL = -Infinity;
         
         for (const key in this.multinomialData) {
+            // Skip the pdf key as it doesn't contain smoothness/kl values
+            if (key === 'pdf') continue;
+            
             const smoothness = this.multinomialData[key].smoothness;
             const kl = this.multinomialData[key].kl;
             
-            this.minSmoothness = Math.min(this.minSmoothness, smoothness);
-            this.maxSmoothness = Math.max(this.maxSmoothness, smoothness);
-            this.minKL = Math.min(this.minKL, kl);
-            this.maxKL = Math.max(this.maxKL, kl);
+            if (smoothness !== undefined) {
+                this.minSmoothness = Math.min(this.minSmoothness, smoothness);
+                this.maxSmoothness = Math.max(this.maxSmoothness, smoothness);
+            }
+            
+            if (kl !== undefined) {
+                this.minKL = Math.min(this.minKL, kl);
+                this.maxKL = Math.max(this.maxKL, kl);
+            }
         }
-    }
 
-    mapValueToY(value, min, max, canvas) {
-        const scaleHeight = canvas.height - 30;
-        const normalizedValue = (value - min) / (max - min);
-        return canvas.height - 15 - (normalizedValue * scaleHeight);
+        // Add console logs to debug
+        console.log('Smoothness range:', this.minSmoothness, '-', this.maxSmoothness);
+        console.log('KL range:', this.minKL, '-', this.maxKL);
     }
 
     drawScale(ctx, value, min, max, colorStop1, colorStop2) {
@@ -140,8 +147,6 @@ class FourierSeriesComponent extends HTMLElement {
         
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // (x, y, width, height)
 
         // Draw gradient background
         const gradient = ctx.createLinearGradient(0, 15, 0, canvas.height - 15);
@@ -159,6 +164,9 @@ class FourierSeriesComponent extends HTMLElement {
         // Current value marker
         const markerY = this.mapValueToY(value, min, max, canvas);
         
+        // Save the current context state
+        ctx.save();
+        
         // Draw triangle marker
         ctx.beginPath();
         ctx.fillStyle = 'red';
@@ -167,6 +175,20 @@ class FourierSeriesComponent extends HTMLElement {
         ctx.lineTo(10, markerY + 5);
         ctx.closePath();
         ctx.fill();
+        
+        // Restore the context state
+        ctx.restore();
+    }
+
+    mapValueToY(value, min, max, canvas) {
+        // Ensure we have valid values
+        if (min === max) return canvas.height - 15;  // Default to bottom if min equals max
+        
+        const scaleHeight = canvas.height - 30;
+        const normalizedValue = (value - min) / (max - min);
+        // Ensure the value is within bounds
+        const clampedValue = Math.max(0, Math.min(1, normalizedValue));
+        return canvas.height - 15 - (clampedValue * scaleHeight);
     }
 
     drawAxis() {
@@ -225,6 +247,29 @@ class FourierSeriesComponent extends HTMLElement {
 
     mapY(y, offset = 20) {
         return this.mainCanvas.height - (y * this.mainCanvas.height / 0.025) - offset;
+    }
+
+    drawPDF() {
+        if (!this.multinomialData || !this.multinomialData.pdf) {
+            console.error('No PDF data available');
+            return;
+        }
+
+        this.ctx.beginPath();
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = 'rgb(44,160,44)';
+
+        // Move to the first point
+        const firstPoint = this.multinomialData.pdf[0];
+        this.ctx.moveTo(this.mapX(firstPoint[0]), this.mapY(firstPoint[1]));
+
+        // Draw lines to each subsequent point
+        for (let i = 1; i < this.multinomialData.pdf.length; i++) {
+            const point = this.multinomialData.pdf[i];
+            this.ctx.lineTo(this.mapX(point[0]), this.mapY(point[1]));
+        }
+
+        this.ctx.stroke();
     }
 
     drawBackgroundSquareWave() {
@@ -294,7 +339,8 @@ class FourierSeriesComponent extends HTMLElement {
             this.ctx.fillRect(rectX, yHeight, width, rectHeight);
         });
 
-        this.drawBackgroundSquareWave();
+        // Draw the PDF line instead of the square wave
+        this.drawPDF();
     }
 }
 
