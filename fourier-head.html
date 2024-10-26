@@ -44,6 +44,7 @@
   <script src="fourier-head-static/js/bulma-slider.min.js"></script>
   <script src="fourier-head-static/js/index.js"></script>
   <script type="module" src="fourier-head-static/js/fourier-series-component.js"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -53,8 +54,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Fourier Head
-              <img src="fourier-head-static/images/favicon.ico" alt="image" style="width: 48px; height: 48px; vertical-align: text-top;">
+            <h1 class="title is-1 publication-title"><img src="fourier-head-static/images/favicon.ico" alt="image" style="width: 48px; height: 48px; vertical-align: text-top;"> Fourier Head:
               <br>Helping Large Language Models Learn<br>Complex Probability Distributions</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
@@ -73,12 +73,15 @@
               <span class="author-block">
                 <a href="https://chensun.me/" target="_blank">Chen Sun</a>
               </span>
-
             </div>
-
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">
                       Brown University, Google DeepMind
+                    </span>
+                  </div>
+                  <div class="is-size-6 publication-authors">
+                    <span class="author-block">
+                      <sup>*</sup>Equal contribution
                     </span>
                   </div>
 
@@ -109,18 +112,18 @@
 
                       <!-- ArXiv abstract Link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/abs/2402.07087" target="_blank"
+                        <a href="https://nategillman.com/fourier-head" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="ai ai-arxiv"></i>
                         </span>
-                        <span>arXiv</span>
+                        <span>arXiv (Coming soon!)</span>
                       </a>
                       </span>
 
                       <!-- Github link -->
                       <span class="link-block">
-                        <a href="https://github.com/nate-gillman/self-correcting-self-consuming" target="_blank"
+                        <a href="https://github.com/nate-gillman/fourier-head" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fab fa-github"></i>
@@ -128,15 +131,22 @@
                         <span>Code</span>
                         </a>
                       </span>
-
-
             </div>
+            <h2 class="subtitle has-text-centered">
+              <br><br>
+              <em>
+                The Fourier head learns a <b>continuous</b> probability density function <br>
+                using Fourier series, and returns a <b>discrete</b> approximation of it.
+              </em>
+            </h2>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
 
 
 <section class="hero teaser is-light">
@@ -156,27 +166,42 @@
         the Fourier head does a better job approximating the square wave (according to the KL divergence metric), 
         and it becomes less smooth (according to the smoothness metric).
         This trend illustrates the Fourier Head Scaling Law in the paper--more frequencies makes it less smooth and gives it more expressive power.
-        In this example, we consider a Fourier PDF with <math display="inline"><mi>N=1, ..., 64</mi></math> frequencies,
-        and <math display="inline"><mi>128</mi></math> output dimensions.
+        In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
+        and \(128\) output dimensions.
       </h2>
     </div>
   </div>
 </section>
 
-<section class="hero teaser">
+<section class="hero teaser is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
       <fourier-series-component 
-        data-source="fourier-head-static/js/data-mixture-of-gaussians.json"
+        data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json"
         title="Example: The Fourier Head Learns a Mixture of Gaussians">
       </fourier-series-component>
       <br>
       <h2 class="subtitle has-text-centered">
         <br>
         We also how a Fourier head can learn to approximate a given mixture of Gaussians.
-        Again, we consider a Fourier PDF with <math display="inline"><mi>N=1, ..., 64</mi></math> frequencies,
-        and <math display="inline"><mi>128</mi></math> output dimensions.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <fourier-series-component 
+        data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json"
+        title="Example: The Fourier Head Learns a Complicated Mixture of Gaussians">
+      </fourier-series-component>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        <br>
+        We also how a Fourier head can learn to approximate a given mixture of Gaussians.
       </h2>
     </div>
   </div>
@@ -184,7 +209,7 @@
 
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -213,13 +238,14 @@
 </section>
 <!-- End paper abstract -->
 
-<!-- Teaser video-->
+
+
 <section class="hero teaser is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
       <h2 class="subtitle has-text-centered">
-        Example: Fourier Head Learns Higher Quality Densities
+        Toy Example: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> outperforms the <b><FONT COLOR="#E06768">linear classification head</FONT></b>
       </h2>
       <h2 class="subtitle has-text-centered">
         <img src="fourier-head-static/images/toy_predicted_vs_true_gmm_2.png" alt="MY ALT TEXT"/>
@@ -236,7 +262,57 @@
     </div>
   </div>
 </section>
-<!-- End teaser video -->
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <h2 class="subtitle has-text-centered">
+        Large-scale example #1: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> increases returns of an Atari agent by 46%.
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/atari_graph_varying_freqs.png" alt="MY ALT TEXT"/>
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        We present a next-action distributions for two different Decision Transformer agents--one trained to predict the next action 
+        using a <b><FONT COLOR="#E06768">linear classification head</FONT></b>, and the other using our proposed
+        <b><FONT COLOR="#62A0CA">Fourier head</FONT></b>.
+        We can see that the <b><FONT COLOR="#62A0CA">Fourier</FONT></b> agent produces a "clump" of actions that is semantically meaningful.
+        Namely, this agent almost certainly wants to shoot in the up direction, and is considering shooting up left or up right.
+        This is presumably because the agent need to move in that general direction to rescue a diver, but because there is a submarine behind it.
+        In contrast, the <b><FONT COLOR="#E06768">linear</FONT></b> agent's next-action distribution doesn't clearly depict a strategy.
+        Our theoretical results show that the model's accurancy increases as the quantity of Fourier frequencies increases.
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/atari_graph_PMFs-158.png" alt="MY ALT TEXT"/>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <h2 class="subtitle has-text-centered">
+        Large-scale example #2: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> improves time series forecasting accuracy.
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/chronos_results.png" alt="MY ALT TEXT" style="width: 70%">
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        We present a next-value distribution for two different time series foundation models--one trained to predict the 
+        next quantized value using a <b><FONT COLOR="#E06768">linear classification head</FONT></b>, and the other using 
+        our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b>.
+        We can see that the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> model produces a smoother next-action distribution
+        than the <b><FONT COLOR="#E06768">linear head</FONT></b>.
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/chronos-PMF.png" alt="MY ALT TEXT" style="width: 85%"/>
+      </h2>
+    </div>
+  </div>
+</section>
 
 
 
@@ -244,21 +320,24 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <br><br>
-      <div class="columns is-centered has-text-centered">
-        <h2 class="title is-4">Overview of Procedure: Fourier head</h2>
-      </div>
       <br>
-      <div class="content has-text-justified">
-        <p>
-          The Fourier head learns a continuous probability density function using Fourier series, and returns a discrete approximation of it.
-          (Maybe we could make a video on Canvas like we did for SCSC? Or we should just screenshot/copy over the )
-        </p>
-      </div>
-      <br>
+      <h2 class="subtitle has-text-centered">
+        Overview of procedure: forward pass through the Fourier head
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/fourier_head_algo.png" alt="MY ALT TEXT"/>
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        At a high level, the Fourier head inputs \( x \in \mathbb{R}^n \), 
+        uses a linear layer to learn the coefficients for a Fourier series with \( N \) frequencies over \([-1, 1]\), 
+        and quantizes the interval \([-1, 1]\) into \( m \) equal bins.
+        Then, the Fourier head evaluates the learned Fourier PDF at those \( m \) bin center points, 
+        and returns those \( m \) likelihoods as a categorical distribution.
+      </h2>
     </div>
   </div>
 </section>
+
 
 
 
