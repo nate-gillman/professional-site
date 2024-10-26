@@ -1,11 +1,8 @@
-// import { multinomialData } from './data-mixture-of-gaussians.js';
-import { multinomialData } from './data-square-wave.js';
-
 class FourierSeriesComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.multinomialData = multinomialData;
+        this.multinomialData = null;  // Initialize as null instead of importing
         this.minSmoothness = Infinity;
         this.maxSmoothness = -Infinity;
         this.minKL = Infinity;
@@ -13,6 +10,9 @@ class FourierSeriesComponent extends HTMLElement {
     }
 
     connectedCallback() {
+
+        const dataTitle = this.getAttribute('title') || 'Example: Learning a Function Using the Fourier Head';
+
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -62,7 +62,7 @@ class FourierSeriesComponent extends HTMLElement {
                     gap: 20px;
                 }
             </style>
-            <h2>Example: Learning a Square Wave Using the Fourier Head</h2>
+            <h2>${dataTitle}</h2>
             <div>
                 <label for="terms">Frequencies: <span id="termValue">1</span></label>
                 <input type="range" id="terms" min="1" max="64" value="1">
@@ -105,10 +105,15 @@ class FourierSeriesComponent extends HTMLElement {
             this.drawFunction(numTerms);
         });
 
-        if (this.multinomialData) {
-            this.drawFunction(1);
+        const dataSource = this.getAttribute('data-source');
+        if (dataSource) {
+            fetch(dataSource)
+                .then(response => response.json())
+                .then(data => {
+                    this.multinomialData = data;
+                    this.drawFunction(1);
+                });
         }
-        this.drawFunction(1);
     }
 
     calculateRanges() {

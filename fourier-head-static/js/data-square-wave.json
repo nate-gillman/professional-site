@@ -1,4 +1,4 @@
-export const multinomialData = {
+{
     "pdf": [
         [
             -1.0,
@@ -12577,4 +12577,4 @@ export const multinomialData = {
             1.1164301213284489e-05
         ]
     }
-};
+}

@@ -39,7 +39,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script type="module" src="fourier-head-static/js/data.js"></script>
   <script defer src="fourier-head-static/js/fontawesome.all.min.js"></script>
   <script src="fourier-head-static/js/bulma-carousel.min.js"></script>
   <script src="fourier-head-static/js/bulma-slider.min.js"></script>
@@ -144,9 +143,13 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
-      <fourier-series-component></fourier-series-component>
+      <fourier-series-component 
+        data-source="fourier-head-static/js/data-square-wave.json"
+        title="Example: The Fourier Head Learns a Square Wave">
+      </fourier-series-component>
       <br>
       <h2 class="subtitle has-text-centered">
+        <br>
         We demonstrate how a Fourier head can learn to approximate a square wave.
         As we increase the number of frequencies, we get a Fourier head with more expressive power.
         Accordingly, we can see that as the number of frequencies increases, 
@@ -160,9 +163,28 @@
   </div>
 </section>
 
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <fourier-series-component 
+        data-source="fourier-head-static/js/data-mixture-of-gaussians.json"
+        title="Example: The Fourier Head Learns a Mixture of Gaussians">
+      </fourier-series-component>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        <br>
+        We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+        Again, we consider a Fourier PDF with <math display="inline"><mi>N=1, ..., 64</mi></math> frequencies,
+        and <math display="inline"><mi>128</mi></math> output dimensions.
+      </h2>
+    </div>
+  </div>
+</section>
+
 
 <!-- Paper abstract -->
-<section class="section hero">
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
