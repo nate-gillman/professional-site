@@ -10,6 +10,9 @@ class FourierSeriesComponent extends HTMLElement {
     }
 
     connectedCallback() {
+
+        const dataTitle = this.getAttribute('title') || 'Example: Learning a Function Using the Fourier Head';
+
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -59,7 +62,7 @@ class FourierSeriesComponent extends HTMLElement {
                     gap: 20px;
                 }
             </style>
-            <h2>Example: Learning a Square Wave Using the Fourier Head</h2>
+            <h2>${dataTitle}</h2>
             <div>
                 <label for="terms">Frequencies: <span id="termValue">1</span></label>
                 <input type="range" id="terms" min="1" max="64" value="1">
