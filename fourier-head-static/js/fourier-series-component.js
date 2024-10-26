@@ -1,11 +1,8 @@
-// import { multinomialData } from './data-mixture-of-gaussians.js';
-import { multinomialData } from './data-square-wave.js';
-
 class FourierSeriesComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.multinomialData = multinomialData;
+        this.multinomialData = null;  // Initialize as null instead of importing
         this.minSmoothness = Infinity;
         this.maxSmoothness = -Infinity;
         this.minKL = Infinity;
@@ -105,10 +102,15 @@ class FourierSeriesComponent extends HTMLElement {
             this.drawFunction(numTerms);
         });
 
-        if (this.multinomialData) {
-            this.drawFunction(1);
+        const dataSource = this.getAttribute('data-source');
+        if (dataSource) {
+            fetch(dataSource)
+                .then(response => response.json())
+                .then(data => {
+                    this.multinomialData = data;
+                    this.drawFunction(1);
+                });
         }
-        this.drawFunction(1);
     }
 
     calculateRanges() {
