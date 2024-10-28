@@ -172,6 +172,7 @@
 </section>
 
 
+<section class="hero teaser is-light">
 <div class="your-class">
   <div>
     <div>
@@ -184,12 +185,11 @@
       <div style="max-width: 50%;  margin:0 auto;">
         <h2 class="subtitle has-text-centered">
           <br>
-          We demonstrate how a Fourier head can learn to approximate a square wave.
-          As we increase the number of frequencies, we get a Fourier head with more expressive power.
-          Accordingly, we can see that as the number of frequencies increases, 
-          the Fourier head does a better job approximating the square wave (according to the KL divergence metric), 
-          and it becomes less smooth (according to the smoothness metric).
-          This trend illustrates the Fourier Head Scaling Law in the paper--more frequencies makes it less smooth and gives it more expressive power.
+          We demonstrate how a Fourier head can learn a square wave.
+          As we increase the number of frequencies, 
+          the Fourier head does a better job approximating the square wave,
+          and it becomes less smooth.
+          This trend illustrates the Fourier Head Scaling Law that we prove.
           In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
           and \(128\) output dimensions.
         </h2>
@@ -201,13 +201,19 @@
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json"
-        title="Example: The Fourier Head Learns a Mixture of Gaussians">
+        title="Example: The Fourier Head Learns a Gaussian Mixture Model">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
         <h2 class="subtitle has-text-centered">
           <br>
-          We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+          We demonstrate how a Fourier head can learn a GMM.
+          As we increase the number of frequencies, 
+          the Fourier head does a better job approximating the GMM,
+          and it becomes less smooth.
+          This trend illustrates the Fourier Head Scaling Law that we prove.
+          In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
+          and \(128\) output dimensions.
         </h2>
       </div>
     </div>
@@ -217,18 +223,26 @@
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json"
-        title="Example: The Fourier Head Learns a Complicated Mixture of Gaussians">
+        title="Example: The Fourier Head Learns a Complicated Gaussian Mixture Model">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
         <h2 class="subtitle has-text-centered">
           <br>
-          We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+          We demonstrate how a Fourier head can learn a complicated GMM.
+          As we increase the number of frequencies, 
+          the Fourier head does a better job approximating the GMM,
+          and it becomes less smooth.
+          This trend illustrates the Fourier Head Scaling Law that we prove.
+          In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
+          and \(128\) output dimensions.
+          <br>
         </h2>
       </div>
     </div>
   </div>
 </div>
+</section>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -281,14 +295,14 @@
             using a decoder-only LLM to model the distribution over the discrete action space for an Atari agent.
             However, when adapting LLMs to non-linguistic domains, it remains unclear if softmax over discrete bins 
             captures the continuous structure of the tokens and the potentially complex distributions needed for high quality token generation.
-            We introduce a neural network layer, constructed using Fourier series, which we can easily substitute 
-            for any linear layer if we want the outputs to have a more continuous structure.
+            <b>We introduce a neural network layer, constructed using Fourier series, which we can easily substitute 
+            for any linear layer if we want the outputs to have a more continuous structure.</b>
             We perform extensive analysis on synthetic datasets, as well as on large-scale decision making and time series forecasting tasks.
             We also provide theoretical evidence that this layer can better learn signal from data while ignoring high-frequency noise.
             All of our results support the effectiveness of our proposed Fourier head in scenarios where the 
             underlying data distribution has a natural continuous structure.
-            For example, the Fourier head improves a Decision Transformer agent's returns by 46% on the Atari 
-            Seaquest game, and increases a state-of-the-art times series foundation model's forecasting performance by 3.5% across 20 benchmarks unseen during training.
+            For example, <b>the Fourier head improves a Decision Transformer agent's returns by 46% on the Atari 
+            Seaquest game, and increases a state-of-the-art times series foundation model's forecasting performance by 3.5% across 20 benchmarks unseen during training.</b>
           </p>
         </div>
       </div>
@@ -343,7 +357,7 @@
         Our theoretical results show that the model's accurancy increases as the quantity of Fourier frequencies increases.
       </h2>
       <h2 class="subtitle has-text-centered">
-        <img src="fourier-head-static/images/atari_graph_PMFs-158.png" alt="MY ALT TEXT"/>
+        <img src="fourier-head-static/images/atari_graph_PMFs-65.png" alt="MY ALT TEXT"/>
       </h2>
     </div>
   </div>
