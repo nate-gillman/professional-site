@@ -224,7 +224,7 @@ class FourierSeriesComponent extends HTMLElement {
         this.ctx.fillText('y', xAxisCenter + 10, 20);
 
         // X-axis ticks (-1 to 1)
-        for (let i = -2; i <= 2; i += 1.0) {
+        for (let i = -1.0; i <= 2; i += 2.0) {
             const x = this.mapX(i);
             this.ctx.beginPath();
             this.ctx.moveTo(x, this.mainCanvas.height - y_offset);

@@ -154,13 +154,13 @@
             <h2 class="subtitle has-text-centered">
               <br><br>
               <em>
-                The Fourier head is a neural network layer which learns a <b>continuous</b> probability<br>
+                The Fourier head is a neural network layer which learns a <b>continuous</b> probability
                 density function using Fourier series, and returns a <b>discrete</b> approximation of it.
               </em>
               <br><br>
               <em>
-                Large language models are often adapted to model non-linguistic tokens.<br>
-                If these tokens have an underlying continuous structure, then replacing the linear<br>
+                Large language models are often adapted to model non-linguistic tokens.
+                If these tokens have an underlying continuous structure, then replacing the linear
                 classification head with the Fourier head can boost downstream performance.
               </em>
             </h2>
@@ -172,6 +172,7 @@
 </section>
 
 
+<section class="hero teaser is-light">
 <div class="your-class">
   <div>
     <div>
@@ -184,12 +185,11 @@
       <div style="max-width: 50%;  margin:0 auto;">
         <h2 class="subtitle has-text-centered">
           <br>
-          We demonstrate how a Fourier head can learn to approximate a square wave.
-          As we increase the number of frequencies, we get a Fourier head with more expressive power.
-          Accordingly, we can see that as the number of frequencies increases, 
-          the Fourier head does a better job approximating the square wave (according to the KL divergence metric), 
-          and it becomes less smooth (according to the smoothness metric).
-          This trend illustrates the Fourier Head Scaling Law in the paper--more frequencies makes it less smooth and gives it more expressive power.
+          We demonstrate how a Fourier head can learn a square wave.
+          <b>As we increase the number of frequencies, 
+          the Fourier head does a better job approximating the square wave,
+          and it becomes less smooth.</b>
+          This trend illustrates the Fourier Head Scaling Law.
           In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
           and \(128\) output dimensions.
         </h2>
@@ -201,13 +201,19 @@
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json"
-        title="Example: The Fourier Head Learns a Mixture of Gaussians">
+        title="Example: The Fourier Head Learns a Gaussian Mixture Model">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
         <h2 class="subtitle has-text-centered">
           <br>
-          We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+          We demonstrate how a Fourier head can learn a GMM.
+          <b>As we increase the number of frequencies, 
+          the Fourier head does a better job approximating the GMM,
+          and it becomes less smooth.</b>
+          This trend illustrates the Fourier Head Scaling Law.
+          In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
+          and \(128\) output dimensions.
         </h2>
       </div>
     </div>
@@ -217,18 +223,26 @@
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json"
-        title="Example: The Fourier Head Learns a Complicated Mixture of Gaussians">
+        title="Example: The Fourier Head Learns a Complicated Gaussian Mixture Model">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
         <h2 class="subtitle has-text-centered">
           <br>
-          We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+          We demonstrate how a Fourier head can learn a complicated GMM.
+          <b>As we increase the number of frequencies, 
+          the Fourier head does a better job approximating the GMM,
+          and it becomes less smooth.</b>
+          This trend illustrates the Fourier Head Scaling Law.
+          In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
+          and \(128\) output dimensions.
+          <br>
         </h2>
       </div>
     </div>
   </div>
 </div>
+</section>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -281,14 +295,14 @@
             using a decoder-only LLM to model the distribution over the discrete action space for an Atari agent.
             However, when adapting LLMs to non-linguistic domains, it remains unclear if softmax over discrete bins 
             captures the continuous structure of the tokens and the potentially complex distributions needed for high quality token generation.
-            We introduce a neural network layer, constructed using Fourier series, which we can easily substitute 
-            for any linear layer if we want the outputs to have a more continuous structure.
+            <b>We introduce a neural network layer, constructed using Fourier series, which we can easily substitute 
+            for any linear layer if we want the outputs to have a more continuous structure.</b>
             We perform extensive analysis on synthetic datasets, as well as on large-scale decision making and time series forecasting tasks.
             We also provide theoretical evidence that this layer can better learn signal from data while ignoring high-frequency noise.
             All of our results support the effectiveness of our proposed Fourier head in scenarios where the 
             underlying data distribution has a natural continuous structure.
-            For example, the Fourier head improves a Decision Transformer agent's returns by 46% on the Atari 
-            Seaquest game, and increases a state-of-the-art times series foundation model's forecasting performance by 3.5% across 20 benchmarks unseen during training.
+            For example, <b>the Fourier head improves a Decision Transformer agent's returns by 46% on the Atari 
+            Seaquest game, and increases a state-of-the-art times series foundation model's forecasting performance by 3.5% across 20 benchmarks unseen during training.</b>
           </p>
         </div>
       </div>
@@ -315,7 +329,7 @@
         We observe that a standard <b><FONT COLOR="#E06768">linear classification head</FONT></b>  fails to distinguish between the two modes, 
         and overfits to high-frequency noise in the training set.
         In contrast, our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> learns a smoother, more accurate categorical distribution.
-        Our paper provides theoretical justification for the Fourier head, as well as empirical justification, on a large scale imitation learing task,
+        Our paper provides theoretical justification for the Fourier head, as well as empirical justification on a large scale imitation learning task,
         and a time series foundation model pretraining task.
       </h2>
     </div>
@@ -326,24 +340,32 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
-      <h2 class="subtitle has-text-centered">
-        Large-scale example #1: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> increases returns of an Atari agent by 46%.
+      <h2 class="title is-4 has-text-centered">
+        <b>Large-scale example #1: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> increases returns of an Atari agent by 46%.</b>
       </h2>
+      <br>
       <h2 class="subtitle has-text-centered">
         <img src="fourier-head-static/images/atari_graph_varying_freqs.png" alt="MY ALT TEXT"/>
       </h2>
       <h2 class="subtitle has-text-justified">
-        We present a next-action distributions for two different Decision Transformer agents--one trained to predict the next action 
-        using a <b><FONT COLOR="#E06768">linear classification head</FONT></b>, and the other using our proposed
-        <b><FONT COLOR="#62A0CA">Fourier head</FONT></b>.
-        We can see that the <b><FONT COLOR="#62A0CA">Fourier</FONT></b> agent produces a "clump" of actions that is semantically meaningful.
-        Namely, this agent almost certainly wants to shoot in the up direction, and is considering shooting up left or up right.
-        This is presumably because the agent need to move in that general direction to rescue a diver, but because there is a submarine behind it.
-        In contrast, the <b><FONT COLOR="#E06768">linear</FONT></b> agent's next-action distribution doesn't clearly depict a strategy.
-        Our theoretical results show that the model's accurancy increases as the quantity of Fourier frequencies increases.
+        <b>We replace the linear classification head in the Decision Transformer agent with a Fourier head.</b>
+        We find that the Decision Transformer agent with the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> 
+        achieves larger returns than the baseline agent with the <b><FONT COLOR="#E06768">linear head</FONT></b>, 
+        so long as the Fourier head has sufficiently many frequencies.
+        We also find that the Fourier agent's returns have lower variance.
       </h2>
       <h2 class="subtitle has-text-centered">
-        <img src="fourier-head-static/images/atari_graph_PMFs-158.png" alt="MY ALT TEXT"/>
+        <img src="fourier-head-static/images/atari_graph_PMFs-65.png" alt="MY ALT TEXT"/>
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        We present next-action distribution examples for two different Decision Transformer agents--one trained to predict the next action 
+        using a <b><FONT COLOR="#E06768">linear classification head</FONT></b> as in the original implementation, 
+        and the other using our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b>.
+        We can see that the <b><FONT COLOR="#62A0CA">Fourier</FONT></b> agent produces a "clump" of actions that is semantically meaningful.
+        Namely, this agent almost certainly wants to shoot in the down right or right direction, presumably because there is a submarine in that direction.
+        In contrast, the <b><FONT COLOR="#E06768">linear</FONT></b> agent's next-action distribution doesn't clearly depict a strategy, 
+        and assigns higher likelihoods to incorrect actions.
+        <b>Because the Fourier head outputs a smoother PMF, it concentrates more probability mass near the correct action, resulting in better returns.</b>
       </h2>
     </div>
   </div>
@@ -353,21 +375,27 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
-      <h2 class="subtitle has-text-centered">
+      <h2 class="title is-4 has-text-centered">
         Large-scale example #2: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> improves time series forecasting accuracy.
       </h2>
+      <br>
       <h2 class="subtitle has-text-centered">
         <img src="fourier-head-static/images/chronos_results.png" alt="MY ALT TEXT" style="width: 70%">
       </h2>
       <h2 class="subtitle has-text-justified">
-        We present a next-value distribution for two different time series foundation models--one trained to predict the 
+        <b>We replace the linear classification head in the Chronos time series foundation model with a Fourier head.</b>
+        We find that the model with the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> 
+        achieves better forecasting accuracy than the baseline model with the <b><FONT COLOR="#E06768">linear head</FONT></b>.
+      </h2>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/chronos-PMF.png" alt="MY ALT TEXT" style="width: 85%"/>
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        We present next-value distribution examples for two different time series foundation models--one trained to predict the 
         next quantized value using a <b><FONT COLOR="#E06768">linear classification head</FONT></b>, and the other using 
         our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b>.
         We can see that the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> model produces a smoother next-action distribution
         than the <b><FONT COLOR="#E06768">linear head</FONT></b>.
-      </h2>
-      <h2 class="subtitle has-text-centered">
-        <img src="fourier-head-static/images/chronos-PMF.png" alt="MY ALT TEXT" style="width: 85%"/>
       </h2>
     </div>
   </div>
@@ -392,6 +420,7 @@
         and quantizes the interval \([-1, 1]\) into \( m \) equal bins.
         Then, the Fourier head evaluates the learned Fourier PDF at those \( m \) bin center points, 
         and returns those \( m \) likelihoods as a categorical distribution.
+        <b>We include a PyTorch implementation at the github link, as well as many examples of its usage.</b>
       </h2>
     </div>
   </div>
@@ -442,6 +471,24 @@
     </div>
   </div>
 </footer>
+
+<!-- Default Statcounter code for Fourier Head project page
+https://nategillman.com/fourier-head -->
+<script type="text/javascript">
+  var sc_project=13050285; 
+  var sc_invisible=1; 
+  var sc_security="486448f6"; 
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/13050285/0/486448f6/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
 
   </body>
   </html>
