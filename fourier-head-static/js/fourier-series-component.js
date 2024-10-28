@@ -104,6 +104,21 @@ class FourierSeriesComponent extends HTMLElement {
             this.drawFunction(numTerms);
         });
 
+        this.slider.addEventListener('mousedown', (e) => {
+            e.stopPropagation();  // Prevent event from bubbling up to carousel
+        });
+        
+        this.slider.addEventListener('touchstart', (e) => {
+            e.stopPropagation();  // Prevent event from bubbling up to carousel
+        });
+    
+        this.slider.addEventListener('input', (e) => {
+            e.stopPropagation();  // Prevent event from bubbling up to carousel
+            const numTerms = parseInt(e.target.value);
+            this.termValue.textContent = numTerms;
+            this.drawFunction(numTerms);
+        });
+
         const dataSource = this.getAttribute('data-source');
         if (dataSource) {
             fetch(dataSource)

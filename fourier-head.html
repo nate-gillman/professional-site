@@ -281,7 +281,9 @@
       infinite: true,
       slidesToShow: 1,
       slidesToScroll: 1,
-      draggable: false,
+      draggable: true,
+      swipe: true,
+      touchMove: true,
       autoplay: true,
       autoplaySpeed: 3000,
       adaptiveHeight: true,
@@ -358,6 +360,7 @@
         achieves larger returns than the baseline agent with the <b><FONT COLOR="#E06768">linear head</FONT></b>, 
         so long as the Fourier head has sufficiently many frequencies.
         We also find that the Fourier agent's returns have lower variance.
+        For normalized returns, higher is better; for smoothness, lower is better.
       </h2>
       <h2 class="subtitle has-text-centered">
         <img src="fourier-head-static/images/atari_graph_PMFs-65.png" alt="MY ALT TEXT"/>
