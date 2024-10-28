@@ -28,7 +28,6 @@
   <link rel="icon" type="image/x-icon" href="fourier-head-static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
-
   <link rel="stylesheet" href="fourier-head-static/css/bulma.min.css">
   <link rel="stylesheet" href="fourier-head-static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="fourier-head-static/css/bulma-slider.min.css">
@@ -45,6 +44,26 @@
   <script src="fourier-head-static/js/index.js"></script>
   <script type="module" src="fourier-head-static/js/fourier-series-component.js"></script>
   <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <style>
+    .glow {
+      animation: glowing 1.5s infinite;
+      border-radius: 50%;
+    }
+    @keyframes glowing {
+      0% {
+        box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255, 165, 0, 1);
+      }
+      100% {
+        box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -153,66 +172,100 @@
 </section>
 
 
-
-
-<section class="hero teaser is-light">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
+<div class="your-class">
+  <div>
+    <div>
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-square-wave.json"
         title="Example: The Fourier Head Learns a Square Wave">
       </fourier-series-component>
       <br>
-      <h2 class="subtitle has-text-centered">
-        <br>
-        We demonstrate how a Fourier head can learn to approximate a square wave.
-        As we increase the number of frequencies, we get a Fourier head with more expressive power.
-        Accordingly, we can see that as the number of frequencies increases, 
-        the Fourier head does a better job approximating the square wave (according to the KL divergence metric), 
-        and it becomes less smooth (according to the smoothness metric).
-        This trend illustrates the Fourier Head Scaling Law in the paper--more frequencies makes it less smooth and gives it more expressive power.
-        In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
-        and \(128\) output dimensions.
-      </h2>
+      <div style="max-width: 50%;  margin:0 auto;">
+        <h2 class="subtitle has-text-centered">
+          <br>
+          We demonstrate how a Fourier head can learn to approximate a square wave.
+          As we increase the number of frequencies, we get a Fourier head with more expressive power.
+          Accordingly, we can see that as the number of frequencies increases, 
+          the Fourier head does a better job approximating the square wave (according to the KL divergence metric), 
+          and it becomes less smooth (according to the smoothness metric).
+          This trend illustrates the Fourier Head Scaling Law in the paper--more frequencies makes it less smooth and gives it more expressive power.
+          In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
+          and \(128\) output dimensions.
+        </h2>
+      </div>
     </div>
   </div>
-</section>
-
-<section class="hero teaser is-light">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
+  <div>
+    <div>
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json"
         title="Example: The Fourier Head Learns a Mixture of Gaussians">
       </fourier-series-component>
       <br>
-      <h2 class="subtitle has-text-centered">
-        <br>
-        We also how a Fourier head can learn to approximate a given mixture of Gaussians.
-      </h2>
+      <div style="max-width: 50%;  margin:0 auto;">
+        <h2 class="subtitle has-text-centered">
+          <br>
+          We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+        </h2>
+      </div>
     </div>
   </div>
-</section>
-
-<section class="hero teaser is-light">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
+  <div>
+    <div>
       <br>
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json"
         title="Example: The Fourier Head Learns a Complicated Mixture of Gaussians">
       </fourier-series-component>
       <br>
-      <h2 class="subtitle has-text-centered">
-        <br>
-        We also how a Fourier head can learn to approximate a given mixture of Gaussians.
-      </h2>
+      <div style="max-width: 50%;  margin:0 auto;">
+        <h2 class="subtitle has-text-centered">
+          <br>
+          We also how a Fourier head can learn to approximate a given mixture of Gaussians.
+        </h2>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.your-class').slick({
+      arrows: true,
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      draggable: false,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      adaptiveHeight: true,
+    });
+  });
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const callback = function(mutationsList) {
+    mutationsList.forEach(mutation => {
+        if (mutation.type === 'childList') {
+          const containers = document.querySelectorAll('.slick-dots');
+          containers.forEach(container => {
+            const buttons = container.querySelectorAll('button');
+            buttons.forEach(button => {
+              button.classList.add('glow');
+            });
+          });
+        }
+      });
+    };
+    const observer = new MutationObserver(callback);
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+</script>
 
 <!-- Paper abstract -->
 <section class="section hero">
