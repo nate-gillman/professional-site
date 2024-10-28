@@ -62,7 +62,6 @@ class FourierSeriesComponent extends HTMLElement {
                     gap: 20px;
                 }
             </style>
-            <h2>${dataTitle}</h2>
             <div>
                 <label for="terms">Frequencies: <span id="termValue">1</span></label>
                 <input type="range" id="terms" min="1" max="64" value="1">
