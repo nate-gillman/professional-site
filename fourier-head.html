@@ -177,17 +177,19 @@
   <div>
     <div>
       <br>
+      <h2 class="title is-4 has-text-centered">
+        <b>Toy Example: <b><FONT COLOR="#62A0CA">Fourier Head</FONT></b> Learns a <b><FONT COLOR="#2CA02C">Square Wave</FONT></b></b>
+      </h2>
       <fourier-series-component 
-        data-source="fourier-head-static/js/data-square-wave.json"
-        title="Example: The Fourier Head Learns a Square Wave">
+        data-source="fourier-head-static/js/data-square-wave.json">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
-        <h2 class="subtitle has-text-centered">
+        <h2 class="subtitle has-text-justified">
           <br>
-          We demonstrate how a Fourier head can learn a square wave.
+          We demonstrate how the Fourier head can learn a square wave.
           <b>As we increase the number of frequencies, 
-          the Fourier head does a better job approximating the square wave,
+          the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> does a better job approximating the <b><FONT COLOR="#2CA02C">square wave</FONT></b>,
           and it becomes less smooth.</b>
           This trend illustrates the Fourier Head Scaling Law.
           In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
@@ -199,17 +201,19 @@
   <div>
     <div>
       <br>
+      <h2 class="title is-4 has-text-centered">
+        <b>Toy Example: <b><FONT COLOR="#62A0CA">Fourier Head</FONT></b> Learns a <b><FONT COLOR="#2CA02C">Gaussian Mixture Model</FONT></b></b>
+      </h2>
       <fourier-series-component 
-        data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json"
-        title="Example: The Fourier Head Learns a Gaussian Mixture Model">
+        data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
-        <h2 class="subtitle has-text-centered">
+        <h2 class="subtitle has-text-justified">
           <br>
           We demonstrate how a Fourier head can learn a GMM.
           <b>As we increase the number of frequencies, 
-          the Fourier head does a better job approximating the GMM,
+          the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> does a better job approximating the <b><FONT COLOR="#2CA02C">GMM</FONT></b>,
           and it becomes less smooth.</b>
           This trend illustrates the Fourier Head Scaling Law.
           In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
@@ -221,22 +225,47 @@
   <div>
     <div>
       <br>
+      <h2 class="title is-4 has-text-centered">
+        <b>Toy Example: <b><FONT COLOR="#62A0CA">Fourier Head</FONT></b> Learns a <b><FONT COLOR="#2CA02C">Complicated Gaussian Mixture Model</FONT></b></b>
+      </h2>
       <fourier-series-component 
-        data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json"
-        title="Example: The Fourier Head Learns a Complicated Gaussian Mixture Model">
+        data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json">
       </fourier-series-component>
       <br>
       <div style="max-width: 50%;  margin:0 auto;">
-        <h2 class="subtitle has-text-centered">
+        <h2 class="subtitle has-text-justified">
           <br>
           We demonstrate how a Fourier head can learn a complicated GMM.
           <b>As we increase the number of frequencies, 
-          the Fourier head does a better job approximating the GMM,
+          the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> does a better job approximating the <b><FONT COLOR="#2CA02C">GMM</FONT></b>,
           and it becomes less smooth.</b>
           This trend illustrates the Fourier Head Scaling Law.
           In this example, we consider a Fourier PDF with \(N=1,\dots,64\) frequencies,
           and \(128\) output dimensions.
           <br>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <br>
+        <h2 class="title is-4 has-text-centered">
+          Toy Example: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> outperforms the <b><FONT COLOR="#E06768">linear classification head</FONT></b>
+        </h2>
+        <br>
+        <h2 class="subtitle has-text-centered">
+          <img src="fourier-head-static/images/toy_predicted_vs_true_gmm_2.png" alt="MY ALT TEXT"/>
+        </h2>
+        <h2 class="subtitle has-text-justified">
+          As a low-dimensional demonstration, we task an MLP with learning to approximate a <b><FONT COLOR="#2CA02C">continuous bimodal density</FONT></b> using a categorical distribution 
+          and a cross entropy objective.
+          We observe that a standard <b><FONT COLOR="#E06768">linear classification head</FONT></b>  fails to distinguish between the two modes, 
+          and overfits to high-frequency noise in the training set.
+          In contrast, our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> learns a smoother, more accurate categorical distribution.
+          Our paper provides theoretical justification for the Fourier head, as well as empirical justification on a large scale imitation learning task,
+          and a time series foundation model pretraining task.
         </h2>
       </div>
     </div>
@@ -312,31 +341,7 @@
 <!-- End paper abstract -->
 
 
-
 <section class="hero teaser is-light">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <br>
-      <h2 class="subtitle has-text-centered">
-        Toy Example: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> outperforms the <b><FONT COLOR="#E06768">linear classification head</FONT></b>
-      </h2>
-      <h2 class="subtitle has-text-centered">
-        <img src="fourier-head-static/images/toy_predicted_vs_true_gmm_2.png" alt="MY ALT TEXT"/>
-      </h2>
-      <h2 class="subtitle has-text-justified">
-        As a low-dimensional demonstration, we task an MLP with learning to approximate a <b><FONT COLOR="#2CA02C">continuous bimodal density</FONT></b> using a categorical distribution 
-        and a cross entropy objective.
-        We observe that a standard <b><FONT COLOR="#E06768">linear classification head</FONT></b>  fails to distinguish between the two modes, 
-        and overfits to high-frequency noise in the training set.
-        In contrast, our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> learns a smoother, more accurate categorical distribution.
-        Our paper provides theoretical justification for the Fourier head, as well as empirical justification on a large scale imitation learning task,
-        and a time series foundation model pretraining task.
-      </h2>
-    </div>
-  </div>
-</section>
-
-<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
@@ -371,7 +376,7 @@
   </div>
 </section>
 
-<section class="hero teaser is-light">
+<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
@@ -404,13 +409,14 @@
 
 
 
-<section class="hero teaser">
+<section class="hero teaser is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br>
-      <h2 class="subtitle has-text-centered">
-        Overview of procedure: forward pass through the Fourier head
+      <h2 class="title is-4 has-text-centered">
+        Overview of Procedure: Forward Pass Through the Fourier Head
       </h2>
+      <br>
       <h2 class="subtitle has-text-centered">
         <img src="fourier-head-static/images/fourier_head_algo.png" alt="MY ALT TEXT"/>
       </h2>
@@ -420,11 +426,37 @@
         and quantizes the interval \([-1, 1]\) into \( m \) equal bins.
         Then, the Fourier head evaluates the learned Fourier PDF at those \( m \) bin center points, 
         and returns those \( m \) likelihoods as a categorical distribution.
-        <b>We include a PyTorch implementation at the github link, as well as many examples of its usage.</b>
+        <b>We include a PyTorch implementation on our github repository, as well as many examples of its usage.</b>
       </h2>
     </div>
   </div>
 </section>
+
+
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br>
+      <h2 class="title is-4 has-text-centered">
+        Toy Example: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> outperforms the <b><FONT COLOR="#E06768">linear classification head</FONT></b>
+      </h2>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        <img src="fourier-head-static/images/toy_predicted_vs_true_gmm_2.png" alt="MY ALT TEXT"/>
+      </h2>
+      <h2 class="subtitle has-text-justified">
+        As a low-dimensional demonstration, we task an MLP with learning to approximate a <b><FONT COLOR="#2CA02C">continuous bimodal density</FONT></b> using a categorical distribution 
+        and a cross entropy objective.
+        We observe that a standard <b><FONT COLOR="#E06768">linear classification head</FONT></b>  fails to distinguish between the two modes, 
+        and overfits to high-frequency noise in the training set.
+        In contrast, our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> learns a smoother, more accurate categorical distribution.
+        Our paper provides theoretical justification for the Fourier head, as well as empirical justification on a large scale imitation learning task,
+        and a time series foundation model pretraining task.
+      </h2>
+    </div>
+  </div>
+</section> -->
 
 
 
