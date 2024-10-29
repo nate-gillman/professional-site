@@ -10,21 +10,19 @@ class FourierSeriesComponent extends HTMLElement {
     }
 
     connectedCallback() {
-
         const dataTitle = this.getAttribute('title') || 'Example: Learning a Function Using the Fourier Head';
 
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
-                    display: block;
                     font-family: Arial, sans-serif;
                     text-align: center;
                 }
                 .container {
-                    display: inline-flex;
-                    align-items: flex-start;
-                    gap: 20px;
-                    margin-top: 20px;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
                 }
                 canvas {
                     border: 1px solid #000;
@@ -32,34 +30,36 @@ class FourierSeriesComponent extends HTMLElement {
                 .scale-container {
                     display: flex;
                     flex-direction: column;
-                    height: 400px;  /* Match mainCanvas height */
+                    padding: 10px;
+                    justify-content: center;
                 }
                 .scale-header {
-                    height: 40px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
                 .scale-label {
                     font-size: 13px;
-                    margin-bottom: 2px;
                 }
                 .scale-value {
                     font-size: 12px;
                 }
                 .scale-canvas {
-                    height: 360px;  /* 400px - 40px header */
+                    margin: auto;
                 }
-                .scale-caption {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 0 5px;
-                    font-size: 12px;
-                    color: #666;
+                .graph-canvas {
+                    margin: auto;
+                    width: 75%;
                 }
                 .scales-wrapper {
                     display: flex;
-                    gap: 20px;
+                    justify-content: center;
+                    max-height: 20%;
+                }
+                .scale-caption {
+                    padding: 0 5px;
+                    font-size: 12px;
+                    color: #666;
                 }
             </style>
             <div>
@@ -67,30 +67,32 @@ class FourierSeriesComponent extends HTMLElement {
                 <input type="range" id="terms" min="1" max="64" value="1">
             </div>
             <div class="container">
-                <canvas id="mainCanvas" width="600" height="400"></canvas>
+                <canvas id="mainCanvas" class="graph-canvas"></canvas>
                 <div class="scales-wrapper">
                     <div class="scale-container">
                         <div class="scale-header">
                             <div class="scale-label">Smoothness (&#8595;)</div>
                             <div class="scale-value" id="smoothnessValue"></div>
                         </div>
-                        <canvas id="smoothnessCanvas" class="scale-canvas" width="80" height="360"></canvas>
+                        <canvas id="smoothnessCanvas" class="scale-canvas" width="80" height="320"></canvas>
                     </div>
                     <div class="scale-container">
                         <div class="scale-header">
                             <div class="scale-label">KL Divergence (&#8595;)</div>
                             <div class="scale-value" id="klValue"></div>
                         </div>
-                        <canvas id="klCanvas" class="scale-canvas" width="80" height="360"></canvas>
+                        <canvas id="klCanvas" class="scale-canvas" width="80" height="320"></canvas>
                     </div>
                 </div>
             </div>
         `;
 
         this.mainCanvas = this.shadowRoot.getElementById('mainCanvas');
+        this.mainCanvas.width = window.innerWidth * 0.7;
+        this.mainCanvas.height = window.innerWidth * 0.4;
+        this.ctx = this.mainCanvas.getContext('2d');
         this.smoothnessCanvas = this.shadowRoot.getElementById('smoothnessCanvas');
         this.klCanvas = this.shadowRoot.getElementById('klCanvas');
-        this.ctx = this.mainCanvas.getContext('2d');
         this.smoothnessCtx = this.smoothnessCanvas.getContext('2d');
         this.klCtx = this.klCanvas.getContext('2d');
         this.slider = this.shadowRoot.getElementById('terms');
