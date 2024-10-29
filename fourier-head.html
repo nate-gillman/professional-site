@@ -65,6 +65,25 @@
       }
     }
   </style>
+  <style>
+    .caption-container {
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .caption-container {
+        max-width: 90%;
+        min-width: 90%;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .caption-container {
+        max-width: 60%;
+        min-width: 60%;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -184,7 +203,7 @@
       <fourier-series-component 
         data-source="fourier-head-static/js/data-square-wave.json">
       </fourier-series-component>
-      <div style="max-width: 60%;  min-width: 60%; margin:0 auto;">
+      <div class="caption-container">
         <h2 class="subtitle has-text-justified">
           We demonstrate how the Fourier head can learn a square wave.
           <b>As we increase the number of frequencies, 
@@ -207,7 +226,7 @@
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v1.json">
       </fourier-series-component>
-      <div style="max-width: 60%;  min-width: 60%; margin:0 auto;">
+      <div class="caption-container">
         <h2 class="subtitle has-text-justified">
           We demonstrate how a Fourier head can learn a GMM.
           <b>As we increase the number of frequencies, 
@@ -230,7 +249,7 @@
       <fourier-series-component 
         data-source="fourier-head-static/js/data-mixture-of-gaussians-v2.json">
       </fourier-series-component>
-      <div style="max-width: 60%;  min-width: 60%; margin:0 auto;">
+      <div class="caption-container">
         <h2 class="subtitle has-text-justified">
           We demonstrate how a Fourier head can learn a complicated GMM.
           <b>As we increase the number of frequencies, 
