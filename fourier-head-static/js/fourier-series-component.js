@@ -194,7 +194,7 @@ class FourierSeriesComponent extends HTMLElement {
             // On mobile, keep original height but ensure equal dimensions
             const dimensions = {
                 width: 80,
-                height: 320
+                height: 200
             };
 
             [this.smoothnessCanvas, this.klCanvas].forEach(canvas => {
@@ -365,7 +365,7 @@ class FourierSeriesComponent extends HTMLElement {
         this.ctx.textAlign = 'left';
 
         // X-axis label
-        this.ctx.fillText('x', xAxisCenter + 30, this.mainCanvas.height - 10 - y_offset);
+        // this.ctx.fillText('x', xAxisCenter + 30, this.mainCanvas.height - 10 - y_offset);
 
         // Y-axis label
         // this.ctx.fillText('y', xAxisCenter + 10, 20);a
