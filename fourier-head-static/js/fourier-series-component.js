@@ -26,6 +26,69 @@ class FourierSeriesComponent extends HTMLElement {
                     max-width: 1200px;
                     margin: 0 auto;
                 }
+                .slider-container {
+                    width: 300px;
+                    padding: 15px;
+                    margin: 10px auto;
+                    touch-action: none;
+                    background: #f5f5f5;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                }
+                .slider-label {
+                    white-space: nowrap;
+                    font-size: 16px;
+                    font-weight: bold;
+                    min-width: fit-content;
+                }
+                .slider-wrapper {
+                    flex: 1;
+                }
+                input[type="range"] {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 100%;
+                    height: 30px;
+                    background: transparent;
+                    cursor: pointer;
+                }
+                input[type="range"]::-webkit-slider-runnable-track {
+                    width: 100%;
+                    height: 10px;
+                    background: #ddd;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                }
+                input[type="range"]::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 30px;
+                    height: 30px;
+                    background: #b07aa1;
+                    border-radius: 50%;
+                    border: none;
+                    margin-top: -10px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                }
+                input[type="range"]::-moz-range-track {
+                    width: 100%;
+                    height: 10px;
+                    background: #ddd;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                }
+                input[type="range"]::-moz-range-thumb {
+                    width: 30px;
+                    height: 30px;
+                    background: #b07aa1;
+                    border-radius: 50%;
+                    border: none;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                }
+                /* Rest of your existing styles remain the same */
                 canvas {
                     border: 1px solid #000;
                 }
@@ -73,7 +136,7 @@ class FourierSeriesComponent extends HTMLElement {
                 @media (min-width: 768px) {
                     .visualization-container {
                         flex-direction: row;
-                        justify-content: center;  /* Changed from flex-start to center */
+                        justify-content: center;
                         align-items: flex-end;
                         gap: 0;
                         width: 100%;
@@ -87,26 +150,28 @@ class FourierSeriesComponent extends HTMLElement {
                         margin-left: 20px;
                         display: flex;
                         align-items: flex-end;
-                        height: auto;  /* Changed from 100% to auto */
+                        height: auto;
                     }
                     .scale-container {
-                        padding: 0 20px;  /* Removed top/bottom padding */
-                        height: auto;    /* Changed from 100% to auto */
+                        padding: 0 20px;
+                        height: auto;
                         display: flex;
                         flex-direction: column;
                         justify-content: flex-end;
                     }
                     .scale-header {
-                        margin-bottom: 10px;  /* Add space between header and canvas */
+                        margin-bottom: 10px;
                     }
                     .scale-canvas {
-                        margin: 0;  /* Remove auto margins */
+                        margin: 0;
                     }
                 }
             </style>
-            <div>
-                <label for="terms">Frequencies: <span id="termValue">1</span></label>
-                <input type="range" id="terms" min="1" max="64" value="1">
+            <div class="slider-container">
+                <label class="slider-label" for="terms">Frequencies: <span id="termValue">1</span></label>
+                <div class="slider-wrapper">
+                    <input type="range" id="terms" min="1" max="64" value="1">
+                </div>
             </div>
             <div class="container">
                 <div class="visualization-container">
@@ -223,6 +288,20 @@ class FourierSeriesComponent extends HTMLElement {
         this.termValue = this.shadowRoot.getElementById('termValue');
         this.smoothnessValue = this.shadowRoot.getElementById('smoothnessValue');
         this.klValue = this.shadowRoot.getElementById('klValue');
+        this.sliderContainer = this.shadowRoot.querySelector('.slider-container');
+
+        // Prevent carousel swipe when interacting with slider
+        this.sliderContainer.addEventListener('touchstart', (e) => {
+            e.stopPropagation();
+        }, { passive: false });
+
+        this.sliderContainer.addEventListener('touchmove', (e) => {
+            e.stopPropagation();
+        }, { passive: false });
+
+        this.sliderContainer.addEventListener('touchend', (e) => {
+            e.stopPropagation();
+        }, { passive: false });
 
         this.slider.addEventListener('input', (e) => {
             e.stopPropagation();
@@ -235,10 +314,6 @@ class FourierSeriesComponent extends HTMLElement {
             e.stopPropagation();
         });
         
-        this.slider.addEventListener('touchstart', (e) => {
-            e.stopPropagation();
-        });
-
         window.addEventListener('resize', () => {
             this.setResponsiveCanvasSize();
             this.setScaleCanvasHeights();
@@ -474,8 +549,8 @@ class FourierSeriesComponent extends HTMLElement {
         this.klValue.textContent = kl.toFixed(4);
 
         // Draw the scales
-        this.drawScale(this.smoothnessCtx, smoothness, this.minSmoothness, this.maxSmoothness, '#ff9999', '#99ff99');
-        this.drawScale(this.klCtx, kl, this.minKL, this.maxKL, '#ff9999', '#99ff99');
+        this.drawScale(this.smoothnessCtx, smoothness, this.minSmoothness, this.maxSmoothness, `#b07aa1`, '#4CAF50');
+        this.drawScale(this.klCtx, kl, this.minKL, this.maxKL, `#b07aa1`,'#4CAF50');
 
         // Draw rectangles for the approximation
         const rectWidth = 2 / values.length;
