@@ -2,7 +2,7 @@ class FourierSeriesComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.multinomialData = null;  // Initialize as null instead of importing
+        this.multinomialData = null;
         this.minSmoothness = Infinity;
         this.maxSmoothness = -Infinity;
         this.minKL = Infinity;
@@ -10,21 +10,21 @@ class FourierSeriesComponent extends HTMLElement {
     }
 
     connectedCallback() {
-
         const dataTitle = this.getAttribute('title') || 'Example: Learning a Function Using the Fourier Head';
 
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
-                    display: block;
                     font-family: Arial, sans-serif;
                     text-align: center;
                 }
                 .container {
-                    display: inline-flex;
-                    align-items: flex-start;
-                    gap: 20px;
-                    margin-top: 20px;
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    max-width: 1200px;
+                    margin: 0 auto;
                 }
                 canvas {
                     border: 1px solid #000;
@@ -32,34 +32,76 @@ class FourierSeriesComponent extends HTMLElement {
                 .scale-container {
                     display: flex;
                     flex-direction: column;
-                    height: 400px;  /* Match mainCanvas height */
+                    padding: 10px;
+                    justify-content: center;
                 }
                 .scale-header {
-                    height: 40px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
                 .scale-label {
                     font-size: 13px;
-                    margin-bottom: 2px;
                 }
                 .scale-value {
                     font-size: 12px;
                 }
                 .scale-canvas {
-                    height: 360px;  /* 400px - 40px header */
+                    margin: auto;
+                }
+                .graph-canvas {
+                    margin: auto;
+                    max-width: 100%;
+                }
+                .visualization-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                }
+                .scales-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
                 }
                 .scale-caption {
-                    display: flex;
-                    justify-content: space-between;
                     padding: 0 5px;
                     font-size: 12px;
                     color: #666;
                 }
-                .scales-wrapper {
-                    display: flex;
-                    gap: 20px;
+                
+                @media (min-width: 768px) {
+                    .visualization-container {
+                        flex-direction: row;
+                        justify-content: center;  /* Changed from flex-start to center */
+                        align-items: flex-end;
+                        gap: 0;
+                        width: 100%;
+                    }
+                    .graph-canvas {
+                        max-width: 600px;
+                        margin: 0;
+                    }
+                    .scales-wrapper {
+                        margin-top: 0;
+                        margin-left: 20px;
+                        display: flex;
+                        align-items: flex-end;
+                        height: auto;  /* Changed from 100% to auto */
+                    }
+                    .scale-container {
+                        padding: 0 20px;  /* Removed top/bottom padding */
+                        height: auto;    /* Changed from 100% to auto */
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                    }
+                    .scale-header {
+                        margin-bottom: 10px;  /* Add space between header and canvas */
+                    }
+                    .scale-canvas {
+                        margin: 0;  /* Remove auto margins */
+                    }
                 }
             </style>
             <div>
@@ -67,58 +109,144 @@ class FourierSeriesComponent extends HTMLElement {
                 <input type="range" id="terms" min="1" max="64" value="1">
             </div>
             <div class="container">
-                <canvas id="mainCanvas" width="600" height="400"></canvas>
-                <div class="scales-wrapper">
-                    <div class="scale-container">
-                        <div class="scale-header">
-                            <div class="scale-label">Smoothness (&#8595;)</div>
-                            <div class="scale-value" id="smoothnessValue"></div>
+                <div class="visualization-container">
+                    <canvas id="mainCanvas" class="graph-canvas"></canvas>
+                    <div class="scales-wrapper">
+                        <div class="scale-container">
+                            <div class="scale-header">
+                                <div class="scale-label">Smoothness (&#8595;)</div>
+                                <div class="scale-value" id="smoothnessValue"></div>
+                            </div>
+                            <canvas id="smoothnessCanvas" class="scale-canvas" width="80" height="320"></canvas>
                         </div>
-                        <canvas id="smoothnessCanvas" class="scale-canvas" width="80" height="360"></canvas>
-                    </div>
-                    <div class="scale-container">
-                        <div class="scale-header">
-                            <div class="scale-label">KL Divergence (&#8595;)</div>
-                            <div class="scale-value" id="klValue"></div>
+                        <div class="scale-container">
+                            <div class="scale-header">
+                                <div class="scale-label">KL Divergence (&#8595;)</div>
+                                <div class="scale-value" id="klValue"></div>
+                            </div>
+                            <canvas id="klCanvas" class="scale-canvas" width="80" height="320"></canvas>
                         </div>
-                        <canvas id="klCanvas" class="scale-canvas" width="80" height="360"></canvas>
                     </div>
                 </div>
             </div>
         `;
 
+        this.setupCanvases();
+        this.setupEventListeners();
+        this.loadData();
+    }
+
+    setupCanvases() {
         this.mainCanvas = this.shadowRoot.getElementById('mainCanvas');
+        this.setResponsiveCanvasSize();
+        this.ctx = this.mainCanvas.getContext('2d');
         this.smoothnessCanvas = this.shadowRoot.getElementById('smoothnessCanvas');
         this.klCanvas = this.shadowRoot.getElementById('klCanvas');
-        this.ctx = this.mainCanvas.getContext('2d');
         this.smoothnessCtx = this.smoothnessCanvas.getContext('2d');
         this.klCtx = this.klCanvas.getContext('2d');
+        
+        // Set scale canvas heights based on viewport
+        this.setScaleCanvasHeights();
+    }
+
+    setScaleCanvasHeights() {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            // Make the scale canvases exactly equal heights
+            const mainHeight = Math.floor(this.mainCanvas.getBoundingClientRect().height);
+            const scaleHeight = Math.floor(mainHeight * 0.8);
+            
+            // Set dimensions for both canvases exactly the same
+            const dimensions = {
+                width: 80,
+                height: scaleHeight
+            };
+
+            // Apply to both canvas elements and their styles
+            [this.smoothnessCanvas, this.klCanvas].forEach(canvas => {
+                // Set canvas dimensions
+                canvas.width = dimensions.width;
+                canvas.height = dimensions.height;
+                
+                // Force dimensions through CSS as well
+                canvas.style.width = `${dimensions.width}px`;
+                canvas.style.height = `${dimensions.height}px`;
+            });
+
+            // Debug log
+            console.log('Scale canvas dimensions:', {
+                smoothness: {
+                    width: this.smoothnessCanvas.width,
+                    height: this.smoothnessCanvas.height,
+                    styleWidth: this.smoothnessCanvas.style.width,
+                    styleHeight: this.smoothnessCanvas.style.height,
+                    clientHeight: this.smoothnessCanvas.clientHeight
+                },
+                kl: {
+                    width: this.klCanvas.width,
+                    height: this.klCanvas.height,
+                    styleWidth: this.klCanvas.style.width,
+                    styleHeight: this.klCanvas.style.height,
+                    clientHeight: this.klCanvas.clientHeight
+                }
+            });
+        } else {
+            // On mobile, keep original height but ensure equal dimensions
+            const dimensions = {
+                width: 80,
+                height: 200
+            };
+
+            [this.smoothnessCanvas, this.klCanvas].forEach(canvas => {
+                canvas.width = dimensions.width;
+                canvas.height = dimensions.height;
+                canvas.style.width = `${dimensions.width}px`;
+                canvas.style.height = `${dimensions.height}px`;
+            });
+        }
+    }
+
+    setResponsiveCanvasSize() {
+        const isMobile = window.innerWidth <= 768;
+        const maxWidth = Math.min(window.innerWidth, 1200);
+        
+        if (isMobile) {
+            this.mainCanvas.width = window.innerWidth * 0.7;
+        } else {
+            this.mainCanvas.width = Math.min(500, maxWidth * 0.45);
+        }
+        this.mainCanvas.height = this.mainCanvas.width * 0.57;
+    }
+
+    setupEventListeners() {
         this.slider = this.shadowRoot.getElementById('terms');
         this.termValue = this.shadowRoot.getElementById('termValue');
         this.smoothnessValue = this.shadowRoot.getElementById('smoothnessValue');
         this.klValue = this.shadowRoot.getElementById('klValue');
 
         this.slider.addEventListener('input', (e) => {
+            e.stopPropagation();
             const numTerms = parseInt(e.target.value);
             this.termValue.textContent = numTerms;
             this.drawFunction(numTerms);
         });
 
         this.slider.addEventListener('mousedown', (e) => {
-            e.stopPropagation();  // Prevent event from bubbling up to carousel
+            e.stopPropagation();
         });
         
         this.slider.addEventListener('touchstart', (e) => {
-            e.stopPropagation();  // Prevent event from bubbling up to carousel
-        });
-    
-        this.slider.addEventListener('input', (e) => {
-            e.stopPropagation();  // Prevent event from bubbling up to carousel
-            const numTerms = parseInt(e.target.value);
-            this.termValue.textContent = numTerms;
-            this.drawFunction(numTerms);
+            e.stopPropagation();
         });
 
+        window.addEventListener('resize', () => {
+            this.setResponsiveCanvasSize();
+            this.setScaleCanvasHeights();
+            this.drawFunction(parseInt(this.slider.value));
+        });
+    }
+
+    loadData() {
         const dataSource = this.getAttribute('data-source');
         if (dataSource) {
             fetch(dataSource)
@@ -166,20 +294,24 @@ class FourierSeriesComponent extends HTMLElement {
         
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
+        // Calculate margins proportionally
+        const topMargin = Math.min(15, canvas.height * 0.05);
+        const sideMargin = Math.min(25, canvas.width * 0.3);
+        
         // Draw gradient background
-        const gradient = ctx.createLinearGradient(0, 15, 0, canvas.height - 15);
+        const gradient = ctx.createLinearGradient(0, topMargin, 0, canvas.height - topMargin);
         gradient.addColorStop(0, colorStop1);
         gradient.addColorStop(1, colorStop2);
         
         // Scale background with gradient
         ctx.fillStyle = gradient;
-        ctx.fillRect(25, 15, 30, canvas.height - 30);
-
+        ctx.fillRect(sideMargin, topMargin, 30, canvas.height - (2 * topMargin));
+    
         // Scale borders
         ctx.strokeStyle = '#000';
-        ctx.strokeRect(25, 15, 30, canvas.height - 30);
-
+        ctx.strokeRect(sideMargin, topMargin, 30, canvas.height - (2 * topMargin));
+    
         // Current value marker
         const markerY = this.mapValueToY(value, min, max, canvas);
         
@@ -189,25 +321,26 @@ class FourierSeriesComponent extends HTMLElement {
         // Draw triangle marker
         ctx.beginPath();
         ctx.fillStyle = 'red';
-        ctx.moveTo(24, markerY);
-        ctx.lineTo(10, markerY - 5);
-        ctx.lineTo(10, markerY + 5);
+        ctx.moveTo(sideMargin - 1, markerY);
+        ctx.lineTo(sideMargin - 15, markerY - 5);
+        ctx.lineTo(sideMargin - 15, markerY + 5);
         ctx.closePath();
         ctx.fill();
         
         // Restore the context state
         ctx.restore();
     }
-
+    
     mapValueToY(value, min, max, canvas) {
         // Ensure we have valid values
-        if (min === max) return canvas.height - 15;  // Default to bottom if min equals max
+        if (min === max) return canvas.height - canvas.height * 0.05;  // Default to bottom if min equals max
         
-        const scaleHeight = canvas.height - 30;
+        const topMargin = Math.min(15, canvas.height * 0.05);
+        const scaleHeight = canvas.height - (2 * topMargin);
         const normalizedValue = (value - min) / (max - min);
         // Ensure the value is within bounds
         const clampedValue = Math.max(0, Math.min(1, normalizedValue));
-        return canvas.height - 15 - (clampedValue * scaleHeight);
+        return canvas.height - topMargin - (clampedValue * scaleHeight);
     }
 
     drawAxis() {
@@ -232,10 +365,10 @@ class FourierSeriesComponent extends HTMLElement {
         this.ctx.textAlign = 'left';
 
         // X-axis label
-        this.ctx.fillText('x', xAxisCenter + 30, this.mainCanvas.height - 10 - y_offset);
+        // this.ctx.fillText('x', xAxisCenter + 30, this.mainCanvas.height - 10 - y_offset);
 
         // Y-axis label
-        this.ctx.fillText('y', xAxisCenter + 10, 20);
+        // this.ctx.fillText('y', xAxisCenter + 10, 20);a
 
         // X-axis ticks (-1 to 1)
         for (let i = -1.0; i <= 2; i += 2.0) {
@@ -265,7 +398,7 @@ class FourierSeriesComponent extends HTMLElement {
     }
 
     mapY(y, offset = 20) {
-        return this.mainCanvas.height - (y * this.mainCanvas.height / 0.025) - offset;
+        return this.mainCanvas.height - (y * this.mainCanvas.height / 0.026) - offset;
     }
 
     drawPDF() {
