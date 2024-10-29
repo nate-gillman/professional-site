@@ -90,7 +90,7 @@ class FourierSeriesComponent extends HTMLElement {
                         height: auto;  /* Changed from 100% to auto */
                     }
                     .scale-container {
-                        padding: 0 5px;  /* Removed top/bottom padding */
+                        padding: 0 20px;  /* Removed top/bottom padding */
                         height: auto;    /* Changed from 100% to auto */
                         display: flex;
                         flex-direction: column;
@@ -398,7 +398,7 @@ class FourierSeriesComponent extends HTMLElement {
     }
 
     mapY(y, offset = 20) {
-        return this.mainCanvas.height - (y * this.mainCanvas.height / 0.025) - offset;
+        return this.mainCanvas.height - (y * this.mainCanvas.height / 0.026) - offset;
     }
 
     drawPDF() {
