@@ -2,7 +2,7 @@ class FourierSeriesComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.multinomialData = null;  // Initialize as null instead of importing
+        this.multinomialData = null;
         this.minSmoothness = Infinity;
         this.maxSmoothness = -Infinity;
         this.minKL = Infinity;
@@ -23,6 +23,8 @@ class FourierSeriesComponent extends HTMLElement {
                     display: flex;
                     justify-content: center;
                     flex-direction: column;
+                    max-width: 1200px;
+                    margin: 0 auto;
                 }
                 canvas {
                     border: 1px solid #000;
@@ -49,17 +51,23 @@ class FourierSeriesComponent extends HTMLElement {
                 }
                 .graph-canvas {
                     margin: auto;
-                    width: 75%;
+                    max-width: 100%;
                 }
                 .scales-wrapper {
                     display: flex;
                     justify-content: center;
                     max-height: 20%;
+                    margin-top: 20px;
                 }
                 .scale-caption {
                     padding: 0 5px;
                     font-size: 12px;
                     color: #666;
+                }
+                @media (min-width: 768px) {
+                    .graph-canvas {
+                        max-width: 600px;
+                    }
                 }
             </style>
             <div>
@@ -87,40 +95,61 @@ class FourierSeriesComponent extends HTMLElement {
             </div>
         `;
 
+        this.setupCanvases();
+        this.setupEventListeners();
+        this.loadData();
+    }
+
+    setupCanvases() {
         this.mainCanvas = this.shadowRoot.getElementById('mainCanvas');
-        this.mainCanvas.width = window.innerWidth * 0.7;
-        this.mainCanvas.height = window.innerWidth * 0.4;
+        this.setResponsiveCanvasSize();
         this.ctx = this.mainCanvas.getContext('2d');
         this.smoothnessCanvas = this.shadowRoot.getElementById('smoothnessCanvas');
         this.klCanvas = this.shadowRoot.getElementById('klCanvas');
         this.smoothnessCtx = this.smoothnessCanvas.getContext('2d');
         this.klCtx = this.klCanvas.getContext('2d');
+    }
+
+    setResponsiveCanvasSize() {
+        const isMobile = window.innerWidth <= 768;
+        const maxWidth = Math.min(window.innerWidth, 1200);
+        
+        if (isMobile) {
+            this.mainCanvas.width = window.innerWidth * 0.7;
+        } else {
+            this.mainCanvas.width = Math.min(600, maxWidth * 0.5);
+        }
+        this.mainCanvas.height = this.mainCanvas.width * 0.57; // Maintain aspect ratio
+    }
+
+    setupEventListeners() {
         this.slider = this.shadowRoot.getElementById('terms');
         this.termValue = this.shadowRoot.getElementById('termValue');
         this.smoothnessValue = this.shadowRoot.getElementById('smoothnessValue');
         this.klValue = this.shadowRoot.getElementById('klValue');
 
         this.slider.addEventListener('input', (e) => {
+            e.stopPropagation();
             const numTerms = parseInt(e.target.value);
             this.termValue.textContent = numTerms;
             this.drawFunction(numTerms);
         });
 
         this.slider.addEventListener('mousedown', (e) => {
-            e.stopPropagation();  // Prevent event from bubbling up to carousel
+            e.stopPropagation();
         });
         
         this.slider.addEventListener('touchstart', (e) => {
-            e.stopPropagation();  // Prevent event from bubbling up to carousel
-        });
-    
-        this.slider.addEventListener('input', (e) => {
-            e.stopPropagation();  // Prevent event from bubbling up to carousel
-            const numTerms = parseInt(e.target.value);
-            this.termValue.textContent = numTerms;
-            this.drawFunction(numTerms);
+            e.stopPropagation();
         });
 
+        window.addEventListener('resize', () => {
+            this.setResponsiveCanvasSize();
+            this.drawFunction(parseInt(this.slider.value));
+        });
+    }
+
+    loadData() {
         const dataSource = this.getAttribute('data-source');
         if (dataSource) {
             fetch(dataSource)
@@ -237,7 +266,7 @@ class FourierSeriesComponent extends HTMLElement {
         this.ctx.fillText('x', xAxisCenter + 30, this.mainCanvas.height - 10 - y_offset);
 
         // Y-axis label
-        this.ctx.fillText('y', xAxisCenter + 10, 20);
+        // this.ctx.fillText('y', xAxisCenter + 10, 20);a
 
         // X-axis ticks (-1 to 1)
         for (let i = -1.0; i <= 2; i += 2.0) {
