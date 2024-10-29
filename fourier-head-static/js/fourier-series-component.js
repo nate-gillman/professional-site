@@ -21,8 +21,8 @@ class FourierSeriesComponent extends HTMLElement {
                 .container {
                     padding: 10px;
                     display: flex;
-                    justify-content: center;
                     flex-direction: column;
+                    align-items: center;
                     max-width: 1200px;
                     margin: 0 auto;
                 }
@@ -53,10 +53,15 @@ class FourierSeriesComponent extends HTMLElement {
                     margin: auto;
                     max-width: 100%;
                 }
+                .visualization-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                }
                 .scales-wrapper {
                     display: flex;
                     justify-content: center;
-                    max-height: 20%;
                     margin-top: 20px;
                 }
                 .scale-caption {
@@ -64,9 +69,38 @@ class FourierSeriesComponent extends HTMLElement {
                     font-size: 12px;
                     color: #666;
                 }
+                
                 @media (min-width: 768px) {
+                    .visualization-container {
+                        flex-direction: row;
+                        justify-content: center;  /* Changed from flex-start to center */
+                        align-items: flex-end;
+                        gap: 0;
+                        width: 100%;
+                    }
                     .graph-canvas {
                         max-width: 600px;
+                        margin: 0;
+                    }
+                    .scales-wrapper {
+                        margin-top: 0;
+                        margin-left: 20px;
+                        display: flex;
+                        align-items: flex-end;
+                        height: auto;  /* Changed from 100% to auto */
+                    }
+                    .scale-container {
+                        padding: 0 5px;  /* Removed top/bottom padding */
+                        height: auto;    /* Changed from 100% to auto */
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                    }
+                    .scale-header {
+                        margin-bottom: 10px;  /* Add space between header and canvas */
+                    }
+                    .scale-canvas {
+                        margin: 0;  /* Remove auto margins */
                     }
                 }
             </style>
@@ -75,21 +109,23 @@ class FourierSeriesComponent extends HTMLElement {
                 <input type="range" id="terms" min="1" max="64" value="1">
             </div>
             <div class="container">
-                <canvas id="mainCanvas" class="graph-canvas"></canvas>
-                <div class="scales-wrapper">
-                    <div class="scale-container">
-                        <div class="scale-header">
-                            <div class="scale-label">Smoothness (&#8595;)</div>
-                            <div class="scale-value" id="smoothnessValue"></div>
+                <div class="visualization-container">
+                    <canvas id="mainCanvas" class="graph-canvas"></canvas>
+                    <div class="scales-wrapper">
+                        <div class="scale-container">
+                            <div class="scale-header">
+                                <div class="scale-label">Smoothness (&#8595;)</div>
+                                <div class="scale-value" id="smoothnessValue"></div>
+                            </div>
+                            <canvas id="smoothnessCanvas" class="scale-canvas" width="80" height="320"></canvas>
                         </div>
-                        <canvas id="smoothnessCanvas" class="scale-canvas" width="80" height="320"></canvas>
-                    </div>
-                    <div class="scale-container">
-                        <div class="scale-header">
-                            <div class="scale-label">KL Divergence (&#8595;)</div>
-                            <div class="scale-value" id="klValue"></div>
+                        <div class="scale-container">
+                            <div class="scale-header">
+                                <div class="scale-label">KL Divergence (&#8595;)</div>
+                                <div class="scale-value" id="klValue"></div>
+                            </div>
+                            <canvas id="klCanvas" class="scale-canvas" width="80" height="320"></canvas>
                         </div>
-                        <canvas id="klCanvas" class="scale-canvas" width="80" height="320"></canvas>
                     </div>
                 </div>
             </div>
@@ -108,6 +144,66 @@ class FourierSeriesComponent extends HTMLElement {
         this.klCanvas = this.shadowRoot.getElementById('klCanvas');
         this.smoothnessCtx = this.smoothnessCanvas.getContext('2d');
         this.klCtx = this.klCanvas.getContext('2d');
+        
+        // Set scale canvas heights based on viewport
+        this.setScaleCanvasHeights();
+    }
+
+    setScaleCanvasHeights() {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            // Make the scale canvases exactly equal heights
+            const mainHeight = Math.floor(this.mainCanvas.getBoundingClientRect().height);
+            const scaleHeight = Math.floor(mainHeight * 0.8);
+            
+            // Set dimensions for both canvases exactly the same
+            const dimensions = {
+                width: 80,
+                height: scaleHeight
+            };
+
+            // Apply to both canvas elements and their styles
+            [this.smoothnessCanvas, this.klCanvas].forEach(canvas => {
+                // Set canvas dimensions
+                canvas.width = dimensions.width;
+                canvas.height = dimensions.height;
+                
+                // Force dimensions through CSS as well
+                canvas.style.width = `${dimensions.width}px`;
+                canvas.style.height = `${dimensions.height}px`;
+            });
+
+            // Debug log
+            console.log('Scale canvas dimensions:', {
+                smoothness: {
+                    width: this.smoothnessCanvas.width,
+                    height: this.smoothnessCanvas.height,
+                    styleWidth: this.smoothnessCanvas.style.width,
+                    styleHeight: this.smoothnessCanvas.style.height,
+                    clientHeight: this.smoothnessCanvas.clientHeight
+                },
+                kl: {
+                    width: this.klCanvas.width,
+                    height: this.klCanvas.height,
+                    styleWidth: this.klCanvas.style.width,
+                    styleHeight: this.klCanvas.style.height,
+                    clientHeight: this.klCanvas.clientHeight
+                }
+            });
+        } else {
+            // On mobile, keep original height but ensure equal dimensions
+            const dimensions = {
+                width: 80,
+                height: 320
+            };
+
+            [this.smoothnessCanvas, this.klCanvas].forEach(canvas => {
+                canvas.width = dimensions.width;
+                canvas.height = dimensions.height;
+                canvas.style.width = `${dimensions.width}px`;
+                canvas.style.height = `${dimensions.height}px`;
+            });
+        }
     }
 
     setResponsiveCanvasSize() {
@@ -117,9 +213,9 @@ class FourierSeriesComponent extends HTMLElement {
         if (isMobile) {
             this.mainCanvas.width = window.innerWidth * 0.7;
         } else {
-            this.mainCanvas.width = Math.min(600, maxWidth * 0.5);
+            this.mainCanvas.width = Math.min(500, maxWidth * 0.45);
         }
-        this.mainCanvas.height = this.mainCanvas.width * 0.57; // Maintain aspect ratio
+        this.mainCanvas.height = this.mainCanvas.width * 0.57;
     }
 
     setupEventListeners() {
@@ -145,6 +241,7 @@ class FourierSeriesComponent extends HTMLElement {
 
         window.addEventListener('resize', () => {
             this.setResponsiveCanvasSize();
+            this.setScaleCanvasHeights();
             this.drawFunction(parseInt(this.slider.value));
         });
     }
@@ -197,20 +294,24 @@ class FourierSeriesComponent extends HTMLElement {
         
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
+        // Calculate margins proportionally
+        const topMargin = Math.min(15, canvas.height * 0.05);
+        const sideMargin = Math.min(25, canvas.width * 0.3);
+        
         // Draw gradient background
-        const gradient = ctx.createLinearGradient(0, 15, 0, canvas.height - 15);
+        const gradient = ctx.createLinearGradient(0, topMargin, 0, canvas.height - topMargin);
         gradient.addColorStop(0, colorStop1);
         gradient.addColorStop(1, colorStop2);
         
         // Scale background with gradient
         ctx.fillStyle = gradient;
-        ctx.fillRect(25, 15, 30, canvas.height - 30);
-
+        ctx.fillRect(sideMargin, topMargin, 30, canvas.height - (2 * topMargin));
+    
         // Scale borders
         ctx.strokeStyle = '#000';
-        ctx.strokeRect(25, 15, 30, canvas.height - 30);
-
+        ctx.strokeRect(sideMargin, topMargin, 30, canvas.height - (2 * topMargin));
+    
         // Current value marker
         const markerY = this.mapValueToY(value, min, max, canvas);
         
@@ -220,25 +321,26 @@ class FourierSeriesComponent extends HTMLElement {
         // Draw triangle marker
         ctx.beginPath();
         ctx.fillStyle = 'red';
-        ctx.moveTo(24, markerY);
-        ctx.lineTo(10, markerY - 5);
-        ctx.lineTo(10, markerY + 5);
+        ctx.moveTo(sideMargin - 1, markerY);
+        ctx.lineTo(sideMargin - 15, markerY - 5);
+        ctx.lineTo(sideMargin - 15, markerY + 5);
         ctx.closePath();
         ctx.fill();
         
         // Restore the context state
         ctx.restore();
     }
-
+    
     mapValueToY(value, min, max, canvas) {
         // Ensure we have valid values
-        if (min === max) return canvas.height - 15;  // Default to bottom if min equals max
+        if (min === max) return canvas.height - canvas.height * 0.05;  // Default to bottom if min equals max
         
-        const scaleHeight = canvas.height - 30;
+        const topMargin = Math.min(15, canvas.height * 0.05);
+        const scaleHeight = canvas.height - (2 * topMargin);
         const normalizedValue = (value - min) / (max - min);
         // Ensure the value is within bounds
         const clampedValue = Math.max(0, Math.min(1, normalizedValue));
-        return canvas.height - 15 - (clampedValue * scaleHeight);
+        return canvas.height - topMargin - (clampedValue * scaleHeight);
     }
 
     drawAxis() {
