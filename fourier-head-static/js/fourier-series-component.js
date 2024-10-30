@@ -43,6 +43,14 @@ class FourierSeriesComponent extends HTMLElement {
                     font-size: 16px;
                     font-weight: bold;
                     min-width: fit-content;
+                    display: flex;
+                    align-items: center;
+                }
+                .term-value {
+                    min-width: 2ch;
+                    text-align: right;
+                    display: inline-block;
+                    margin-left: 0.5em;  /* Add consistent spacing after the colon */
                 }
                 .slider-wrapper {
                     flex: 1;
@@ -168,7 +176,7 @@ class FourierSeriesComponent extends HTMLElement {
                 }
             </style>
             <div class="slider-container">
-                <label class="slider-label" for="terms">Frequencies: <span id="termValue">1</span></label>
+                <label class="slider-label">Frequencies:  <span class="term-value" id="termValue">1</span></label>
                 <div class="slider-wrapper">
                     <input type="range" id="terms" min="1" max="64" value="1">
                 </div>
