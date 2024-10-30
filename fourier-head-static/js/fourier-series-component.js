@@ -452,7 +452,7 @@ class FourierSeriesComponent extends HTMLElement {
             this.ctx.moveTo(x, this.mainCanvas.height - y_offset);
             this.ctx.lineTo(x, this.mainCanvas.height - 10 - y_offset);
             this.ctx.stroke();
-            this.ctx.fillText(i.toFixed(2), x - 10, this.mainCanvas.height - 15 - y_offset);
+            this.ctx.fillText(i.toFixed(1), x - 10, this.mainCanvas.height - 15 - y_offset);
         }
 
         // Y-axis ticks (0 to 0.06)
