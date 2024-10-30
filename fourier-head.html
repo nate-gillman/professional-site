@@ -8,22 +8,12 @@
   <meta name="description" content="Using Fourier series, we build a neural network layer which learns categorical distributions that have a continuous structure.">
   <meta property="og:title" content="Fourier Head: Helping Large Language Models Learn Complex Probability Distributions"/>
   <meta property="og:description" content="Using Fourier series, we build a neural network layer which learns categorical distributions that have a continuous structure."/>
-  <meta property="og:url" content="https://nategillman.com/sc-sc.html"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <!-- <meta property="og:image" content="scsc-static/image/your_banner_image.png" /> -->
-  <!-- <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/> -->
-
-
-  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <!-- <meta name="twitter:image" content="scsc-static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image"> -->
+  <meta property="og:url" content="https://nategillman.com/fourier-head"/>
+  <meta name="twitter:title" content="Fourier Head: Helping Large Language Models Learn Complex Probability Distributions">
+  <meta name="twitter:description" content="Using Fourier series, we build a neural network layer which learns categorical distributions that have a continuous structure.">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="Machine Learning, Generative Modeling, Self-Consuming Loops, Data Contamination, Deep Learning, Artificial Intelligence, Human Motion Synthesis">
+  <meta name="keywords" content="Machine Learning, Generative Modeling, Fourier, Series, Fourier Series, Deep Learning, LLM, Large language model, continuity, continuous, Artificial Intelligence">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
   <title>Fourier head</title>
   <link rel="icon" type="image/x-icon" href="fourier-head-static/images/favicon.ico">
@@ -151,12 +141,12 @@
 
                       <!-- ArXiv abstract Link -->
                       <span class="link-block">
-                        <a href="https://nategillman.com/fourier-head" target="_blank"
+                        <a href="https://arxiv.org/abs/2410.22269" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="ai ai-arxiv"></i>
                         </span>
-                        <span>arXiv (Coming soon!)</span>
+                        <span>arXiv</span>
                       </a>
                       </span>
 
@@ -228,7 +218,7 @@
       </fourier-series-component>
       <div class="caption-container">
         <h2 class="subtitle has-text-justified">
-          We demonstrate how a Fourier head can learn a GMM.
+          We demonstrate how the Fourier head can learn a GMM.
           <b>As we increase the number of frequencies, 
           the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> does a better job approximating the <b><FONT COLOR="#2CA02C">GMM</FONT></b>,
           and it becomes less smooth.</b>
@@ -251,7 +241,7 @@
       </fourier-series-component>
       <div class="caption-container">
         <h2 class="subtitle has-text-justified">
-          We demonstrate how a Fourier head can learn a complicated GMM.
+          We demonstrate how the Fourier head can learn a complicated GMM.
           <b>As we increase the number of frequencies, 
           the <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> does a better job approximating the <b><FONT COLOR="#2CA02C">GMM</FONT></b>,
           and it becomes less smooth.</b>
@@ -452,71 +442,35 @@
 </section>
 
 
-
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <br>
-      <h2 class="title is-4 has-text-centered">
-        Toy Example: <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> outperforms the <b><FONT COLOR="#E06768">linear classification head</FONT></b>
-      </h2>
-      <br>
-      <h2 class="subtitle has-text-centered">
-        <img src="fourier-head-static/images/toy_predicted_vs_true_gmm_2.png" alt="MY ALT TEXT"/>
-      </h2>
-      <h2 class="subtitle has-text-justified">
-        As a low-dimensional demonstration, we task an MLP with learning to approximate a <b><FONT COLOR="#2CA02C">continuous bimodal density</FONT></b> using a categorical distribution 
-        and a cross entropy objective.
-        We observe that a standard <b><FONT COLOR="#E06768">linear classification head</FONT></b>  fails to distinguish between the two modes, 
-        and overfits to high-frequency noise in the training set.
-        In contrast, our proposed <b><FONT COLOR="#62A0CA">Fourier head</FONT></b> learns a smoother, more accurate categorical distribution.
-        Our paper provides theoretical justification for the Fourier head, as well as empirical justification on a large scale imitation learning task,
-        and a time series foundation model pretraining task.
-      </h2>
-    </div>
-  </div>
-</section> -->
-
-
-
-
-
-
-
-
-
-<!-- End images --> 
-
-
-
-
-
-
-
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre>
-<code>@InProceedings{TODO
+<code>@misc{gillman2024fourierheadhelpinglarge,
+  title={Fourier Head: Helping Large Language Models Learn Complex Probability Distributions}, 
+  author={Nate Gillman and Daksh Aggarwal and Michael Freeman and Saurabh Singh and Chen Sun},
+  year={2024},
+  eprint={2410.22269},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2410.22269}, 
 }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
 
 
-  <footer class="footer">
+<footer class="footer">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
             This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
-
         </div>
       </div>
     </div>
