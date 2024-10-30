@@ -118,6 +118,24 @@
 
 				<b>2024</b>
 
+                <div class="publist">
+                    <a>
+                        <img src="pubs/thumbs/fourier-head.gif" width="140" align="left"
+                             style="margin-left:0px;margin-right:20px; border:1px solid #ddd"/>
+                    </a>
+                    <a href="pubs/fourier-head.pdf" target="_blank">
+                        <b><i><img src="fourier-head-static/images/favicon.ico" alt="image" style="width: 24px; height: 24px; vertical-align: text-top;">Fourier Head: Helping Large Language Models Learn Complex Probability Distributions</i></b><br/>
+                    </a>
+                    <u>Nate Gillman</u><sup>*</sup>, Daksh Aggarwal<sup>*</sup>, Michael Freeman, Saurabh Singh, and Chen Sun.
+                    <br/><br/><br/>
+					<a href="https://arxiv.org/abs/2410.22269" target="_blank">arXiv</a>
+                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                    <a href="https://github.com/nate-gillman/fourier-head" target="_blank">Code</a>
+                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                    <a href="https://nategillman.com/fourier-head" target="_blank">Project Page</a>
+                        
+                </div>
+
 
                 <div class="publist">
                     <a>
@@ -283,6 +301,14 @@
                 <h3>Updates </h3>
                 <p>
                 <ul>
+
+                    <li>
+                        [Oct-2024] Our arXiv <a href="https://arxiv.org/abs/2410.22269 target="_blank">preprint</a> proposes a new neural network layer, the Fourier head,
+                        which learns a continuous probability density function using Fourier series, and returns a discrete approximation of it.
+                        When to use it? Large language models are often adapted to model non-linguistic tokens. 
+                        If these tokens have an underlying continuous structure, then replacing the linear classification head with the Fourier head can boost downstream performance.
+                        You can find our project page and code at <a href="https://nategillman.com/fourier-head" target="_blank">this link</a>.
+                    </li>
 
                     <li>
                         [May-2024] Our paper <a href="https://nategillman.com/sc-sc.html" target="_blank">Self-Correcting Self-Consuming Loops for Generative Model Training</a> has been accepted at ICML 2024.
