@@ -20,6 +20,54 @@
 
     </script>
     <div id="header"></div>
+
+    <script async src="https://platform.twitter.com/widgets.js"></script>
+    <script>
+        // Wait for Twitter widgets to load
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+    
+        function embedTweet(tweetUrl, containerId) {
+            // Clear any existing tweets
+            document.getElementById(containerId).innerHTML = '';
+            
+            // Create tweet embed
+            twttr.widgets.createTweetEmbed(
+                tweetUrl.split('/').pop(), // Get tweet ID from URL
+                document.getElementById(containerId),
+                {
+                    conversation: 'none',    // Hide replies
+                    cards: 'visible',        // Show cards
+                    width: 550,              // Set width
+                    align: 'center',         // Center alignment
+                    theme: 'light',          // Use light theme
+                    hideCard: false,         // Show the card
+                    hideThread: false,       // Show the thread
+                    dnt: false              // Show all engagement metrics
+                }
+            );
+        }
+    
+        // Initialize tweet embeds when the page loads
+        window.onload = function() {
+            embedTweet('https://x.com/GillmanLab/status/1852015295470166477', 'tweet-container-fourier-head');
+            embedTweet('https://x.com/GillmanLab/status/1760342830013206760', 'tweet-container-scsc');
+            // You can add more tweet embeds here by calling embedTweet with different URLs and container IDs
+        };
+    </script>
+
 </head>
 
 <body>
@@ -62,7 +110,10 @@
                 <a href="https://www.brown.edu/academics/math/people/jeffrey-hoffstein" target-"_blank">Jeff Hoffstein</a>.
                 I've since switched to AI, but I still like to make my background in pure math 
                 <a href="http://bit.ly/3NxHH4p" target="_blank">useful</a>
-                in my AI research.
+                in
+                <a href="https://nategillman.com/sc-sc.html" target="_blank">my</a> 
+                AI
+                <a href="https://nategillman.com/fourier-head" target="_blank">research</a>.
                 After getting my masters degree in mathematics in spring 2022, I took a professional leave of absence 
                 for a year to gain exposure to ML in industry. I did three internships: at 
                 <a href="https://www.americanexpress.com/en-us/careers/" target="_blank">American Express AI Labs</a>
@@ -98,13 +149,18 @@
 
                 <center>
                     <a href="misc/Gillman_resume.pdf" target="_blank">Resume</a>
-                    &nbsp;/&nbsp; <a href="https://scholar.google.com/citations?user=twg9zD0AAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
-                    <!-- &nbsp;/&nbsp; <a href="https://www.semanticscholar.org/author/Srinath-Sridhar/143627559" -->
-                                     <!-- target="_blank">Semantic Scholar</a> -->
-                    &nbsp;/&nbsp; <a href="https://github.com/nate-gillman" target="_blank">Github</a>
-                    &nbsp;/&nbsp; <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/1289272" target="_blank">MathReviews</a>
-                    &nbsp;/&nbsp; <a href="https://arxiv.org/a/gillman_n_1.html" target="_blank">arXiv</a>
-                    &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/ngillman/" target="_blank">LinkedIn</a>
+                    &nbsp;/&nbsp; 
+                    <a href="https://scholar.google.com/citations?user=twg9zD0AAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
+                    &nbsp;/&nbsp; <a href="https://www.semanticscholar.org/author/Nate-Gillman/66688357" target="_blank">Semantic Scholar</a>
+                    &nbsp;/&nbsp; 
+                    <a href="https://github.com/nate-gillman" target="_blank">Github</a>
+                    <!-- &nbsp;/&nbsp; <a href="https://mathscinet.ams.org/mathscinet/MRAuthorID/1289272" target="_blank">MathReviews</a> -->
+                    &nbsp;/&nbsp; 
+                    <a href="https://arxiv.org/a/gillman_n_1.html" target="_blank">arXiv</a>
+                    &nbsp;/&nbsp; 
+                    <a href="https://www.linkedin.com/in/ngillman/" target="_blank">LinkedIn</a>
+                    &nbsp;/&nbsp; 
+                    <a href="https://twitter.com/GillmanLab" target="_blank">Twitter</a>
                     <br/>
                      <h3>nate_gillman [at] brown.edu</a></h3>
                 </center>
@@ -307,27 +363,33 @@
                         which learns a continuous probability density function using Fourier series, and returns a discrete approximation of it.
                         When to use it? Large language models are often adapted to model non-linguistic tokens. 
                         If these tokens have an underlying continuous structure, then replacing the linear classification head with the Fourier head can boost downstream performance.
-                        You can find our project page and code at <a href="https://nategillman.com/fourier-head" target="_blank">this link</a>.
+                        You can find code and visuals on our <a href="https://nategillman.com/fourier-head" target="_blank">project page</a>.
+
+                        <div id="tweet-container-fourier-head"></div>
+
                     </li>
 
-                    <li>
+                    <!-- <li>
                         [May-2024] Our paper <a href="https://nategillman.com/sc-sc.html" target="_blank">Self-Correcting Self-Consuming Loops for Generative Model Training</a> has been accepted at ICML 2024.
                         I'd love to connect with other researchers who will be in Vienna this summer!!
-                    </li>
+                    </li> -->
 
                     <li>
                         [Feb-2024] Our arXiv <a href="https://arxiv.org/abs/2402.07087" target="_blank">preprint</a> aims to stabilize self-consuming generative model training.
                         We support our proposed method with rigorous proofs, as well as experiments on the challening human motion synthesis task.
                         You can find human motion visuals and code on our <a href="https://nategillman.com/sc-sc.html" target="_blank">project page</a>.
+
+                        <div id="tweet-container-scsc"></div>
+
                     </li>
 
-                    <li>
+                    <!-- <li>
                         [June-2023] I've returned to grad school from my leave of absence in industry.
-                    </li>
+                    </li> -->
 
-                    <li>
+                    <!-- <li>
                         [June-2022] I'm taking a leave of absense from grad school to gain more exposure to AI in industry.
-                    </li>
+                    </li> -->
 
                     <!-- <li>
                         [Mar-2023] I joined 
@@ -346,59 +408,17 @@
                         I'm in the Global Decision Science business unit, and my project involves working to improve chatbots for consumer services.
                     </li> -->
 
-                    <li>
+                    <!-- <li>
                         [May-2022] My collaborator <a href="http://brown.edu/Research/AI/people/william.html" target="_blank">William Rudman</a> presented our IsoScore paper at ACL 2022.
-                    </li>
+                    </li> -->
 
-                    <li>
+                    <!-- <li>
                         [Aug-2021] Our arXiv <a href="https://arxiv.org/abs/2108.07344" target="_blank">preprint</a> shows that previous metrics have been used incorrectly to analyze word embedding spaces.
                         We provide a mathematically sound method, which we call IsoScore.
                         We give rigorous proofs and we share an efficient Python <a href="https://github.com/bcbi-edu/p_eickhoff_isoscore" target="_blank">implementation</a>.
-                    </li>
 
-<!--
-                <span id="moreNews">
-		<li>[ Mar-2021 ]: Our upcoming <a href="https://aadilmehdis.github.io/DRACO-Project-Page/" target="_blank">ICRA paper</a> shows how to learn to densely reconstruct and canonicalize shapes with only weak supervision. Please see the <a href="https://aadilmehdis.github.io/DRACO-Project-Page/" target="_blank">project page</a> for details, code, and data.
-                    </li>
-                <li>[ Nov-2020 ]: Our upcoming <a href="https://neurips.cc/Conferences/2020/Schedule?type=Spotlight" target="_blank">NeurIPS spotlight</a> paper shows how to learn 3D canonical spatiotemporal representations of dynamically moving point clouds. Please see the <a href="https://geometry.stanford.edu/projects/caspr/" target="_blank">project page</a> for details.
-                    </li>
-        			<li>[ Aug-2020 ]: We organized the 3DReps Workshop at ECCV 2020. You can watch the recorded sessions on YouTube (Link: <a href="https://youtu.be/XaaiwCqEWI4" target="_blank">Session 1</a>, <a href="https://youtu.be/BskUrVASLB4" target="_blank">Session 2</a>).
-                    </li>
-			
-					<li>[ Aug-2020 ]: Upcoming paper at ECCV on <a href="https://geometry.stanford.edu/projects/pix2surf/" target="_blank">sparse multiview 3D surface recontruction</a> aka <b>Pix2Surf</b>.
-                    </li>
-                    
-					<li>[ Jan-2020 ]: I am serving on the program committee (Area Chair) for <a href="http://ieeevr.org/2020/" target="_blank">IEEE VR 2020</a>.
-                    </li>
-					<li>[ Jan-2020 ]: Paper on <a href="https://geometry.stanford.edu/projects/learningdynamicsWACV2020/" target="_blank">predicting object dynamics</a> of previously unseen objects accepted to WACV.
-                    </li>
-                    <li>[ Dec-2019 ]: <a href="https://davrempe.github.io/" target="_blank">Davis Rempe</a> is presenting our paper on <a href="https://geometry.stanford.edu/projects/xnocs/" target="_blank">multi-view aggregation for 3D reconstruction</a> at NeurIPS. <a href="https://github.com/drsrinathsridhar/xnocs" target="_blank">Code and datasets are available</a>.
-                    </li>
-                    <li>[ Jun-2019 ]: <a
-                            href="https://www.youtube.com/watch?v=Vz2yDmrVURQ"
-                            target="_blank">Watch the interview</a> we did for our CVPR 2019 paper:
-                    </li><br />
-					<iframe width="280" height="158" src="https://www.youtube.com/embed/Vz2yDmrVURQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <li>[ May-2019 ]: Our <a
-                            href="https://storage.googleapis.com/pirk.io/projects/learning_interactions/index.html"
-                            target="_blank">paper</a> on learning to generate human-object interactions was awarded an
-                        <a href="misc/photos/EG2019_HonMention_crop.jpg" target="_blank"><b>honorable mention</b></a> at
-                        Eurographics 2019. Read my blog post on this work on the <a
-                                href="http://ai.stanford.edu/blog/generate-human-object/" target="_blank">SAIL Blog</a>.
-                    </li>
-                    <li>[ Mar-2019 ]: Can we estimate the 6D pose and size of novel object
-                        instances never encountered before? Our upcoming <a href="https://arxiv.org/abs/1901.02970"
-                                                                            target="_blank">CVPR oral paper</a> shows
-                        one way (<a href="https://youtu.be/UsfoLcInlhM" target="_blank">video</a>).
-                    </li>
-                    <li>[ Mar-2019 ]: <a href="https://twitter.com/drsrinathsridha/status/1113314946136268800"
-                                         target="_blank">Read my Twitter thread</a> about interesting hand facts that
-                        you may not have known before.
-                    </li>
-                    </span>
-                    <div onclick="toggleNews()" id="moreNewsBtn" class="showBtn"><a class="empty">+ More...</a></div>
-                    <div onclick="toggleNews()" id="lessNewsBtn" class="showBtn"><a class="empty">- Less...</a></div>
--->
+                        <div id="tweet-container-isoscore"></div>
+                    </li> -->
                 </ul>
                 </p>
             </div>
