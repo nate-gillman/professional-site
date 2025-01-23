@@ -14,3 +14,5 @@ This is the repo for my professional website.
 5. If for some reason Brown CS's file system won't let me ssh in, I problably need to redo the ssh keypair authentication setup [http://cs.brown.edu/about/system/connecting/ssh/osx/](http://cs.brown.edu/about/system/connecting/ssh/osx/)
 
 Attribution (and thanks) are due to Srinath Sridhar, who kindly let me cannibalize his website ([https://github.com/drsrinathsridhar/homepage](https://github.com/drsrinathsridhar/homepage))
+
+6. NOTE: when developing locally, `npx serve`
